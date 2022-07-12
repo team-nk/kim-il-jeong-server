@@ -1,0 +1,10 @@
+name: "Issue"
+description: "이슈를 작성하세요."
+body:
+  - type: textarea
+    attributes:
+      label: Describe
+      description: |
+        이슈에 대한 설명을 작성해주세요.
+      placeholder: |
+        Port 생성이 필요합니다. 
