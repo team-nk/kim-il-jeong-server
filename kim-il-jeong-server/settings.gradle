@@ -1,4 +1,0 @@
-rootProject.name = 'kim-il-jeong-server'
-
-include 'kimiljeong-infrastructure'
-include 'kimiljeong-domain'
