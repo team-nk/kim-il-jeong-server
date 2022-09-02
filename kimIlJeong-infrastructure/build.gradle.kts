@@ -42,7 +42,6 @@ noArg {
     annotation("javax.persistence.Embeddable")
 }
 
-
 tasks.getByName<Jar>("jar") {
     enabled = false
 }
