@@ -1,0 +1,26 @@
+spring:
+  jpa:
+    generate-ddl: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: validate
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    url: ${DB_URL}
+    jackson:
+      property-naming-strategy: SNAKE_CASE
+
+  redis:
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
+    main:
+      web-application-type: reactive
+
+jwt:
+  secret-key: ${JWT_SECRET}
+  access-exp: ${JWT_ACCESS_EXP}
+  refresh-exp: ${JWT_REFRESH_EXP}
