@@ -2,7 +2,7 @@ object Dependencies {
     // mysql
     const val MYSQL = "mysql:mysql-connector-java"
 
-    //validation
+    // validation
     const val VALIDATION = "org.springframework.boot:spring-boot-starter-validation"
 
     // web
@@ -32,15 +32,18 @@ object Dependencies {
     // s3
     const val CLOUD_AWS_S3 = "org.springframework.cloud:spring-cloud-starter-aws"
 
-    //cloud
+    // cloud
     const val CLOUD_AWS_DEPENDENCIES =
-            "org.springframework.cloud:spring-cloud-aws-dependencies:${DependencyVersions.CLOUD_AWS_VERSION}"
+        "org.springframework.cloud:spring-cloud-aws-dependencies:${DependencyVersions.CLOUD_AWS_VERSION}"
 
     // oauth2
     const val OAUTH2 = "org.springframework.boot:spring-boot-starter-oauth2-client"
 
-    //jwt
+    // jwt
     const val JWT = "io.jsonwebtoken:jjwt:${DependencyVersions.JWT_VERSION}"
+
+    // klint
+    const val KTLINT = "com.pinterest:ktlint:${DependencyVersions.KTLINT_VERSION}"
 
     // test
     const val TEST = "org.springframework.boot:spring-boot-starter-test"
