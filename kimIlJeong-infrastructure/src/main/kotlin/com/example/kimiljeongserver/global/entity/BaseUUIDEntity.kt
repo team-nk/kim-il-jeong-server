@@ -8,11 +8,10 @@ import javax.persistence.Id
 import javax.persistence.MappedSuperclass
 
 @MappedSuperclass
-abstract class BaseUUIDEntity(id: UUID) {
-
+abstract class BaseUUIDEntity(
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)")
-    private val id: UUID = UUID(0, 0)
-}
+    val id: UUID = UUID.randomUUID()
+)
