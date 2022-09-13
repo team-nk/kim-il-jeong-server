@@ -1,6 +1,18 @@
 package com.example.kimiljeongdomain.error
 
-class KimIlJeongException(val errorCode: ErrorCode) : RuntimeException() {
+open class KimIlJeongException(
+    private val exceptionProperty: ErrorProperty
+) : RuntimeException() {
+
+    val errorStatus: Int
+        get() = exceptionProperty.errorStatus
+
+    val errorCode: String
+        get() = exceptionProperty.errorCode
+
+    val errorMessage: String
+        get() = exceptionProperty.errorMessage
+
     override fun fillInStackTrace(): Throwable {
         return this
     }
