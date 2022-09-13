@@ -1,62 +1,47 @@
 package com.example.kimiljeongserver.global.error
 
-import com.example.kimiljeongdomain.error.ErrorCode
+import com.example.kimiljeongdomain.error.KimIlJeongException
+import com.example.kimiljeongserver.global.error.exception.CustomDataIntegrityViolationException
+import com.example.kimiljeongserver.global.error.exception.CustomIllegalArgumentException
+import com.example.kimiljeongserver.global.error.exception.CustomMethodArgumentNotValidException
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.http.HttpStatus
-import org.springframework.validation.BindException
-import org.springframework.web.HttpRequestMethodNotSupportedException
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
-import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestControllerAdvice
-import javax.validation.ConstraintViolationException
 
 @RestControllerAdvice
 class ErrorHandler {
 
-    @ExceptionHandler(BindException::class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    protected fun handleBindException(exception: BindException): ErrorResponse? {
-        return ErrorResponse.of(exception.bindingResult)
+    @ExceptionHandler(org.springframework.validation.BindException::class)
+    fun handleBindException(e: org.springframework.validation.BindException): ResponseEntity<*>? {
+        val errorMap: MutableMap<String, String?> = HashMap()
+
+        for (error in e.fieldErrors) {
+            errorMap[error.field] = error.defaultMessage
+        }
+        return ResponseEntity<Map<String, String?>>(errorMap, HttpStatus.BAD_REQUEST)
     }
 
     @ExceptionHandler(MethodArgumentNotValidException::class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    protected fun handleMethodArgumentNotValidException(
-        exception: MethodArgumentNotValidException
-    ): ErrorResponse? {
-        return ErrorResponse.of(exception.bindingResult)
-    }
-
-    @ExceptionHandler(ConstraintViolationException::class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    protected fun handleConstraintViolationException(
-        exception: ConstraintViolationException
-    ): ErrorResponse? {
-        return ErrorResponse.of(exception.constraintViolations)
+    fun handleMethodArgumentNotValidException(): ResponseEntity<ErrorResponse<Unit>> {
+        return handleException(CustomMethodArgumentNotValidException.EXCEPTION)
     }
 
     @ExceptionHandler(DataIntegrityViolationException::class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    protected fun handleDataIntegrityViolationException(
-        exception: DataIntegrityViolationException
-    ): ErrorResponse? {
-        return ErrorResponse.of(exception)
+    fun handleDataIntegrityViolationException(): ResponseEntity<ErrorResponse<Unit>> {
+        return handleException(CustomDataIntegrityViolationException.EXCEPTION)
     }
 
     @ExceptionHandler(IllegalArgumentException::class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    protected fun handleIllegalArgumentException(
-        exception: java.lang.IllegalArgumentException
-    ): ErrorResponse? {
-        return ErrorResponse.of(ErrorCode.BAD_REQUEST)
+    fun handleIllegalArgumentException(): ResponseEntity<ErrorResponse<Unit>> {
+        return handleException(CustomIllegalArgumentException.EXCEPTION)
     }
 
-    @ExceptionHandler(HttpRequestMethodNotSupportedException::class)
-    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
-    protected fun handleHttpRequestMethodNotSupportException(
-        exception: MethodArgumentNotValidException
-    ): ErrorResponse? {
-        return ErrorResponse.of(ErrorCode.METHOD_NOT_ALLOWED)
+    private fun handleException(e: KimIlJeongException): ResponseEntity<ErrorResponse<Unit>> {
+        val status = HttpStatus.valueOf(e.errorStatus)
+        val body = ErrorResponse.of(e)
+        return ResponseEntity(body, status)
     }
 }
