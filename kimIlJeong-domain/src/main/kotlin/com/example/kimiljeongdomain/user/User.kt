@@ -5,11 +5,11 @@ import java.util.*
 
 @Aggregate
 class User(
-        val id: UUID = UUID(0, 0),
+    val id: UUID,
 
-        val email: String,
+    val email: String,
 
-        val accountId: String,
+    val accountId: String,
 
-        val password: String
+    val password: String
 )
