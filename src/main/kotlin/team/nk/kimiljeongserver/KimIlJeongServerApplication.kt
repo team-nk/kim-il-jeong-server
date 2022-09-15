@@ -1,4 +1,4 @@
-package com.example.kimiljeongserver
+package team.nk.kimiljeongserver
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class KimIlJeongServerApplication
 
 fun main(args: Array<String>) {
-    runApplication<KimIlJeongServerApplication>(*args)
+	runApplication<KimIlJeongServerApplication>(*args)
 }
