@@ -20,7 +20,7 @@ class JwtTokenParser(
 ) {
     companion object {
         private const val JWT_HEADER = "Authorization"
-        private const val JWT_PREFIX = "Bearer"
+        private const val JWT_PREFIX = "Bearer "
     }
 
     fun getAuthentication(token: String?): Authentication? {
