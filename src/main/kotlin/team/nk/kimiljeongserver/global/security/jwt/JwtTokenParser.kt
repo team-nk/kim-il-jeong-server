@@ -32,8 +32,8 @@ class JwtTokenParser(
     }
 
     fun resolveToken(httpServletRequest: HttpServletRequest): String? {
-        val bearerToken: String? = httpServletRequest.getHeader(jwtProperties.header)
-        return parseToken(bearerToken)
+        val bearerToken: String? = httpServletRequest.getHeader(JWT_HEADER)
+        return bearerToken?.let { parseToken(it) }
     }
 
     fun parseToken(token: String): String {
