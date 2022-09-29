@@ -1,24 +1,16 @@
 package team.nk.kimiljeongserver.global.security.jwt
 
-import io.jsonwebtoken.*
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.springframework.security.core.Authentication
-import org.springframework.security.core.userdetails.UserDetails
+import io.jsonwebtoken.Jwts
+import io.jsonwebtoken.SignatureAlgorithm
 import org.springframework.stereotype.Component
 import team.nk.kimiljeongserver.domain.auth.domain.RefreshToken
 import team.nk.kimiljeongserver.domain.auth.domain.repository.RefreshTokenRepository
 import team.nk.kimiljeongserver.domain.auth.presentation.dto.response.TokenResponse
-import team.nk.kimiljeongserver.global.exception.ExpiredTokenException
-import team.nk.kimiljeongserver.global.exception.JwtValidateException
-import team.nk.kimiljeongserver.global.exception.SignatureTokenException
-import team.nk.kimiljeongserver.global.exception.UnexpectedTokenException
 import team.nk.kimiljeongserver.global.security.jwt.properties.JwtProperties
-import team.nk.kimiljeongserver.global.security.principle.AuthDetailsService
 import java.util.*
 
 @Component
 class JwtTokenProvider(
-    private val authDetailsService: AuthDetailsService,
     private val jwtProperties: JwtProperties,
     private val refreshTokenRepository: RefreshTokenRepository
 ) {
@@ -38,8 +30,9 @@ class JwtTokenProvider(
         val newRefreshToken: String = generateToken(email, jwtProperties.refreshExp, REFRESH_KEY)
         refreshTokenRepository.save(
             RefreshToken(
-                email = (email),
-                token = newRefreshToken
+                email = email,
+                token = newRefreshToken,
+                timeToLive = jwtProperties.refreshExp
             )
         )
         return newRefreshToken
@@ -53,31 +46,5 @@ class JwtTokenProvider(
             .setIssuedAt(Date())
             .setExpiration(Date(System.currentTimeMillis() + expiration * 1000))
             .compact()
-    }
-
-    fun getAuthentication(token: String?): Authentication? {
-        return token?.let {
-            val userDetails: UserDetails = authDetailsService.loadUserByUsername(getTokenSubject(token))
-
-            return UsernamePasswordAuthenticationToken(userDetails, "", userDetails.authorities)
-        }
-    }
-
-    private fun getTokenSubject(subject: String): String {
-        return parseTokenBody(subject).subject
-    }
-
-    private fun parseTokenBody(token: String): Claims {
-        return try {
-            Jwts.parser().setSigningKey(jwtProperties.secretKey)
-                .parseClaimsJws(token).body
-        } catch (e: Exception) {
-            when (e) {
-                is ExpiredJwtException -> throw ExpiredTokenException.EXCEPTION
-                is SignatureException -> throw SignatureTokenException.EXCEPTION
-                is MalformedJwtException -> throw JwtValidateException.EXCEPTION
-                else -> throw UnexpectedTokenException.EXCEPTION
-            }
-        }
     }
 }
