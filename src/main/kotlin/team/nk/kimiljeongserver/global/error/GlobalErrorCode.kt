@@ -9,7 +9,12 @@ enum class GlobalErrorCode(
 
     BAD_REQUEST(HttpStatus.BAD_REQUEST, "Bad Request"),
 
-    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error");
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error"),
+
+    JWT_VALIDATE_FAILED(HttpStatus.UNAUTHORIZED, "Token Validate Failed"),
+    JWT_EXPIRED(HttpStatus.UNAUTHORIZED, "Jwt Token Expired"),
+    JWT_SIGNATURE(HttpStatus.UNAUTHORIZED, "Invalid Signature"),
+    UNEXPECTED_TOKEN(HttpStatus.INTERNAL_SERVER_ERROR, "Unexpected Token Exception");
 
     override fun status() = status.value()
     override fun message() = message
