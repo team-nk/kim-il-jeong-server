@@ -23,14 +23,16 @@ class JwtTokenParser(
         private const val JWT_PREFIX = "Bearer"
     }
 
-    fun getAuthentication(token: String): Authentication = token.let {
-        val userDetails: UserDetails = authDetailsService.loadUserByUsername(getTokenSubject(token))
+    fun getAuthentication(token: String?): Authentication? {
+        return token?.let {
+            val userDetails: UserDetails = authDetailsService.loadUserByUsername(getTokenSubject(token))
 
-        return UsernamePasswordAuthenticationToken(userDetails, "", userDetails.authorities)
+            return UsernamePasswordAuthenticationToken(userDetails, "", userDetails.authorities)
+        }
     }
 
-    fun resolveToken(httpServletRequest: HttpServletRequest): String {
-        val bearerToken: String = httpServletRequest.getHeader(JWT_HEADER)
+    fun resolveToken(httpServletRequest: HttpServletRequest): String? {
+        val bearerToken: String? = httpServletRequest.getHeader(jwtProperties.header)
         return parseToken(bearerToken)
     }
 
