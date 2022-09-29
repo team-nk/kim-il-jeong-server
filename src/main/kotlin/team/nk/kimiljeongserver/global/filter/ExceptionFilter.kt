@@ -1,5 +1,6 @@
 package team.nk.kimiljeongserver.global.filter
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.http.MediaType
 import org.springframework.web.filter.OncePerRequestFilter
 import team.nk.kimiljeongserver.global.error.ErrorProperty
@@ -11,17 +12,17 @@ import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-class ExceptionFilter : OncePerRequestFilter() {
+class ExceptionFilter(
+    private val objectMapper: ObjectMapper
+) : OncePerRequestFilter() {
 
     override fun doFilterInternal(
-        request: HttpServletRequest,
-        response: HttpServletResponse,
-        filterChain: FilterChain
+        request: HttpServletRequest, response: HttpServletResponse, filterChain: FilterChain
     ) {
         try {
             filterChain.doFilter(request, response)
         } catch (e: Exception) {
-            when(e) {
+            when (e) {
                 is KimIlJeongException -> errorToJson(e.errorProperty, response)
                 else -> {
                     errorToJson(InternalServerErrorException.EXCEPTION.errorProperty, response)
@@ -35,6 +36,12 @@ class ExceptionFilter : OncePerRequestFilter() {
         response.status = errorProperty.status()
         response.contentType = MediaType.APPLICATION_JSON_VALUE
         response.characterEncoding = StandardCharsets.UTF_8.name()
-        response.writer.write(ErrorResponse(errorProperty.status(), errorProperty.message()).toString())
+        response.writer.write(
+            objectMapper.writeValueAsString(
+                ErrorResponse(
+                    errorProperty.status(), errorProperty.message()
+                )
+            )
+        )
     }
 }
