@@ -1,3 +1,4 @@
+/*
 package team.nk.kimiljeongserver.global.config
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider
@@ -24,4 +25,4 @@ class AwsSESConfig(
             .withRegion(awsSESProperties.region)
             .build()
     }
-}
+}*/

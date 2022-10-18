@@ -1,3 +1,4 @@
+/*
 package team.nk.kimiljeongserver.infrastructure.aws.email
 
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceAsync
@@ -30,4 +31,4 @@ class RegisterMailService(
             throw MessageIsRejectedException.EXCEPTION
         }
     }
-}
+}*/

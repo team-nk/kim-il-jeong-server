@@ -36,10 +36,11 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation ("org.springframework.boot:spring-boot-starter-mail")
-	implementation("com.amazonaws:aws-java-sdk-ses:1.12.307")
-	implementation("org.projectlombok:lombok:1.18.22")
+	implementation("com.amazonaws:aws-java-sdk-ses:1.12.315")
+	implementation("org.projectlombok:lombok:1.18.24")
 	runtimeOnly("mysql:mysql-connector-java")
 	implementation("javax.servlet:javax.servlet-api:4.0.1")
+	implementation ("org.springdoc:springdoc-openapi-ui:1.6.11")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 }

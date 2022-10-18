@@ -6,14 +6,12 @@ import team.nk.kimiljeongserver.domain.user.domain.User
 import team.nk.kimiljeongserver.domain.user.domain.repository.UserRepository
 import team.nk.kimiljeongserver.domain.user.exception.PasswordMissMatchedException
 import team.nk.kimiljeongserver.domain.user.presentation.dto.request.SaveUserRequest
-import team.nk.kimiljeongserver.infrastructure.aws.email.RegisterMailService
-import java.time.ZonedDateTime
-import java.util.*
+//import team.nk.kimiljeongserver.infrastructure.aws.email.RegisterMailService
 
 @Service
 class SignupUserService(
     private val userRepository: UserRepository,
-    private val registerMailService: RegisterMailService
+    //private val registerMailService: RegisterMailService
 ) {
     @Transactional
     fun execute(saveUserRequest: SaveUserRequest) {
