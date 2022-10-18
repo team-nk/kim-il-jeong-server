@@ -9,7 +9,9 @@ enum class GlobalErrorCode(
 
     BAD_REQUEST(HttpStatus.BAD_REQUEST, "Bad Request"),
 
-    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error");
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error"),
+
+    MESSAGE_IS_REJECTED(HttpStatus.BAD_REQUEST, "Message Is Rejected");
 
     override fun status() = status.value()
     override fun message() = message
