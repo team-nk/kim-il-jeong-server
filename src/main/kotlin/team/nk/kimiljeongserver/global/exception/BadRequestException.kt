@@ -6,7 +6,5 @@ import team.nk.kimiljeongserver.global.error.exception.KimIlJeongException
 object BadRequestException : KimIlJeongException(
     GlobalErrorCode.BAD_REQUEST
 ) {
-
-    @JvmField
     val EXCEPTION = BadRequestException
 }
