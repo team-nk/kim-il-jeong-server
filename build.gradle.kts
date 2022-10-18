@@ -9,6 +9,16 @@ plugins {
 	kotlin("kapt") version "1.4.10"
 }
 
+configurations {
+	compileOnly {
+		extendsFrom(configurations.annotationProcessor.get())
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
 group = "team.nk"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
@@ -27,8 +37,12 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation ("org.springframework.boot:spring-boot-starter-mail")
+	implementation("com.amazonaws:aws-java-sdk-ses:1.12.315")
+	implementation("org.projectlombok:lombok:1.18.24")
 	runtimeOnly("mysql:mysql-connector-java")
 	implementation("javax.servlet:javax.servlet-api:4.0.1")
+	implementation ("org.springdoc:springdoc-openapi-ui:1.6.11")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 }

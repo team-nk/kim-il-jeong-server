@@ -6,6 +6,5 @@ import team.nk.kimiljeongserver.global.error.exception.KimIlJeongException
 object ExpiredTokenException : KimIlJeongException(
     GlobalErrorCode.JWT_EXPIRED
 ) {
-    @JvmField
     val EXCEPTION = ExpiredTokenException
 }

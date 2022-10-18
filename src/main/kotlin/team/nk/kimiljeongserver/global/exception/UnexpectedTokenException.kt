@@ -6,6 +6,5 @@ import team.nk.kimiljeongserver.global.error.exception.KimIlJeongException
 object UnexpectedTokenException : KimIlJeongException(
     GlobalErrorCode.UNEXPECTED_TOKEN
 ) {
-    @JvmField
     val EXCEPTION = UnexpectedTokenException
 }

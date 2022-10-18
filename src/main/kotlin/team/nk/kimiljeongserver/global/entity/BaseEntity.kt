@@ -7,11 +7,10 @@ import javax.persistence.Id
 import javax.persistence.MappedSuperclass
 
 @MappedSuperclass
-abstract class BaseEntity(
-
+abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int,
+    val id: Int = 0
 
-    val createdAt: ZonedDateTime
-)
+    val createdAt: ZonedDateTime = ZonedDateTime.now()
+}
