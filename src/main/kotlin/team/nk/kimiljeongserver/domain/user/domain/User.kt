@@ -13,7 +13,6 @@ import javax.validation.constraints.NotNull
 @Table(name = "tbl_user")
 class User(
 
-    @field: Email
     @field:NotNull
     val email: String,
 
