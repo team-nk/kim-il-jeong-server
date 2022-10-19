@@ -27,6 +27,10 @@ class SecurityConfiguration(
 
         http
             .authorizeHttpRequests()
+
+            .antMatchers("/swagger-ui/**").permitAll()
+            .antMatchers("/v3/api-docs/**").permitAll()
+
             .antMatchers(HttpMethod.POST, "/user").permitAll()
             .antMatchers(HttpMethod.POST, "/user/login").permitAll()
             .anyRequest().authenticated()
