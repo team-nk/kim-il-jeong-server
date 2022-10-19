@@ -4,7 +4,10 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import team.nk.kimiljeongserver.domain.auth.presentation.dto.response.TokenResponse
+import team.nk.kimiljeongserver.domain.user.presentation.dto.request.LoginUserRequest
 import team.nk.kimiljeongserver.domain.user.presentation.dto.request.SaveUserRequest
+import team.nk.kimiljeongserver.domain.user.service.LoginUserService
 import team.nk.kimiljeongserver.domain.user.service.SignupUserService
 import javax.validation.Valid
 
@@ -12,7 +15,8 @@ import javax.validation.Valid
 @RequestMapping("/user")
 @RestController
 class UserController(
-    private val signupUserService: SignupUserService
+    private val signupUserService: SignupUserService,
+    private val loginUserService: LoginUserService
 ) {
 
     @Operation(summary = "회원가입")
@@ -20,5 +24,11 @@ class UserController(
     @PostMapping
     fun signup(@Valid @RequestBody request: SaveUserRequest) {
         signupUserService.execute(request)
+    }
+
+    @Operation(summary = "로그인")
+    @PostMapping("/login")
+    fun signup(@Valid @RequestBody request: LoginUserRequest): TokenResponse {
+        return loginUserService.execute(request)
     }
 }

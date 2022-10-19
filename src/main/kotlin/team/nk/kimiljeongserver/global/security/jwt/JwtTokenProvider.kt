@@ -1,12 +1,12 @@
 package team.nk.kimiljeongserver.global.security.jwt
 
-import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import org.springframework.stereotype.Component
 import team.nk.kimiljeongserver.domain.auth.domain.RefreshToken
 import team.nk.kimiljeongserver.domain.auth.domain.repository.RefreshTokenRepository
 import team.nk.kimiljeongserver.domain.auth.presentation.dto.response.TokenResponse
 import team.nk.kimiljeongserver.global.security.jwt.properties.JwtProperties
+import io.jsonwebtoken.*
 import java.util.*
 
 @Component

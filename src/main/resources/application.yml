@@ -21,6 +21,11 @@ spring:
   jackson:
     property-naming-strategy: SNAKE_CASE
 
+jwt:
+  secret-key: ${JWT_SECRET_KEY}
+  access-exp: ${JWT_ACCESS_EXP"}
+  refresh-exp: ${JWT_REFRESH_EXP}
+
 aws:
   access-token: ${AWS_ACCESS_TOKEN}
   secret-key: ${AWS_SECRET_KEY}
