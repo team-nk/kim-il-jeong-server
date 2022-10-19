@@ -8,6 +8,8 @@ enum class UserErrorCode(
     private val message: String
 ) : ErrorProperty {
 
+    USER_NOT_FOUND(HttpStatus.NOT_FOUND, "User Not Found"),
+
     PASSWORD_MISS_MATCHED(HttpStatus.UNAUTHORIZED, "Password Miss Matched");
 
     override fun status() = status.value()
