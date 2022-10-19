@@ -1,5 +1,6 @@
 package team.nk.kimiljeongserver.domain.user.service
 
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import team.nk.kimiljeongserver.domain.user.domain.User
@@ -11,6 +12,7 @@ import team.nk.kimiljeongserver.domain.user.presentation.dto.request.SaveUserReq
 @Service
 class SignupUserService(
     private val userRepository: UserRepository,
+    private val passwordEncoder: PasswordEncoder
     //private val registerMailService: RegisterMailService
 ) {
     @Transactional
@@ -26,7 +28,7 @@ class SignupUserService(
             User(
                 email = saveUserRequest.email,
                 accountId = saveUserRequest.accountId,
-                password = saveUserRequest.password
+                password = passwordEncoder.encode(saveUserRequest.password)
             )
         )
     }
