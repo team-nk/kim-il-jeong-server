@@ -6,5 +6,6 @@ import team.nk.kimiljeongserver.domain.user.domain.User
 
 @Repository
 interface UserRepository : CrudRepository<User, Int> {
-    
+
+    fun findByEmail(email: String): User?
 }
