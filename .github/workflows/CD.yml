@@ -34,4 +34,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Publish on Docker Hub
-        run: docker buildx build --platform linux/arm64 -t jaemin05/kim-il-jeong-server --push .
+        run: docker buildx build -t jaemin05/kim-il-jeong-server --push .
