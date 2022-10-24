@@ -6,8 +6,10 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import team.nk.kimiljeongserver.domain.auth.presentation.dto.response.TokenResponse
 import team.nk.kimiljeongserver.domain.user.presentation.dto.request.LoginUserRequest
+import team.nk.kimiljeongserver.domain.user.presentation.dto.request.ModifyBirthdayRequest
 import team.nk.kimiljeongserver.domain.user.presentation.dto.request.SaveUserRequest
 import team.nk.kimiljeongserver.domain.user.service.LoginUserService
+import team.nk.kimiljeongserver.domain.user.service.ModifyBirthdayService
 import team.nk.kimiljeongserver.domain.user.service.SignupUserService
 import javax.validation.Valid
 
@@ -16,7 +18,8 @@ import javax.validation.Valid
 @RestController
 class UserController(
     private val signupUserService: SignupUserService,
-    private val loginUserService: LoginUserService
+    private val loginUserService: LoginUserService,
+    private val modifyBirthdayService: ModifyBirthdayService
 ) {
 
     @Operation(summary = "회원가입")
@@ -28,7 +31,13 @@ class UserController(
 
     @Operation(summary = "로그인")
     @PostMapping("/login")
-    fun signup(@Valid @RequestBody request: LoginUserRequest): TokenResponse {
+    fun login(@Valid @RequestBody request: LoginUserRequest): TokenResponse {
         return loginUserService.execute(request)
+    }
+
+    @Operation(summary = "생일 수정하기")
+    @PatchMapping("/birthday")
+    fun modifyBirthday(@Valid @RequestBody request: ModifyBirthdayRequest) {
+        modifyBirthdayService.execute(request);
     }
 }

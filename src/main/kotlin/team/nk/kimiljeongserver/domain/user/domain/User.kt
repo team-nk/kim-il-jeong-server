@@ -3,10 +3,9 @@ package team.nk.kimiljeongserver.domain.user.domain
 import org.hibernate.validator.constraints.Length
 import team.nk.kimiljeongserver.global.entity.BaseEntity
 import team.nk.kimiljeongserver.infrastructure.aws.defaultImage.DefaultImage
-import java.time.ZonedDateTime
+import java.time.LocalDateTime
 import javax.persistence.Entity
 import javax.persistence.Table
-import javax.validation.constraints.Email
 import javax.validation.constraints.NotNull
 
 @Entity
@@ -22,7 +21,7 @@ class User(
 
     password: String,
 
-    birthday: ZonedDateTime = ZonedDateTime.now(),
+    birthday: LocalDateTime = LocalDateTime.now(),
 
     profile: String = DefaultImage.PROFILE_IMAGE
 
@@ -40,4 +39,8 @@ class User(
     @field:NotNull
     var profile = profile
         protected set
+
+    fun modifyBirthday(birthday: LocalDateTime) {
+        this.birthday = birthday
+    }
 }
