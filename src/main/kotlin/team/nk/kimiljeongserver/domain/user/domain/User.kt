@@ -40,4 +40,8 @@ class User(
     @field:NotNull
     var profile = profile
         protected set
+
+    fun modifyBirthday(birthday: ZonedDateTime) {
+        this.birthday = birthday
+    }
 }
