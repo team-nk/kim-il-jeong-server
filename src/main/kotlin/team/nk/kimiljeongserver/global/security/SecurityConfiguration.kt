@@ -18,6 +18,7 @@ class SecurityConfiguration(
     @Bean
     protected fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
+            .formLogin().disable()
             .csrf().disable()
             .cors()
 
@@ -33,6 +34,8 @@ class SecurityConfiguration(
 
             .antMatchers(HttpMethod.POST, "/user").permitAll()
             .antMatchers(HttpMethod.POST, "/user/login").permitAll()
+            .antMatchers(HttpMethod.POST, "/user/birthday").authenticated()
+
             .anyRequest().authenticated()
 
         http
