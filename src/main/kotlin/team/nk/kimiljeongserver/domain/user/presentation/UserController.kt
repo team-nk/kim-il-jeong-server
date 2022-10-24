@@ -35,7 +35,7 @@ class UserController(
         return loginUserService.execute(request)
     }
 
-    @Operation(summary = "생일 입력하기")
+    @Operation(summary = "생일 수정하기")
     @PostMapping("/birthday")
     fun modifyBirthday(@Valid @RequestBody request: ModifyBirthdayRequest) {
         modifyBirthdayService.execute(request);
