@@ -1,7 +1,7 @@
 package team.nk.kimiljeongserver.domain.user.presentation.dto.request
 
-import java.time.ZonedDateTime
+import java.time.LocalDateTime
 
 data class ModifyBirthdayRequest(
-    val birthday: ZonedDateTime
+    val birthday: LocalDateTime
 )
