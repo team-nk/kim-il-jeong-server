@@ -11,13 +11,15 @@ data class ScheduleRequest(
     @field: NotBlank(message = "content는 필수 입력입니다.")
     val content: String,
 
-    val location: String,
+    val latitude: Double,
+
+    val longitude: Double,
 
     val color: Color,
 
     val isAlways: Boolean,
 
-    val createTime: LocalDateTime,
+    val createdAt: LocalDateTime,
 
     val endTime: LocalDateTime
 )
