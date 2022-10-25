@@ -7,6 +7,7 @@ import javax.validation.constraints.Size
 
 data class SaveUserRequest(
 
+    @field: Email
     @field: NotBlank(message = "email은 필수 입력입니다.")
     val email: String,
 
