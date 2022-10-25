@@ -9,6 +9,7 @@ enum class UserErrorCode(
 ) : ErrorProperty {
 
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "User Not Found"),
+    USER_ALREADY_EXISTS(HttpStatus.CONFLICT, "User Already Exists"),
 
     PASSWORD_MISS_MATCHED(HttpStatus.UNAUTHORIZED, "Password Miss Matched");
 
