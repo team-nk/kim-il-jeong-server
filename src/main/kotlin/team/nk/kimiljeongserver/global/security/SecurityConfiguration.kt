@@ -34,7 +34,12 @@ class SecurityConfiguration(
 
             .antMatchers(HttpMethod.POST, "/user").permitAll()
             .antMatchers(HttpMethod.POST, "/user/login").permitAll()
-            .antMatchers(HttpMethod.POST, "/user/birthday").authenticated()
+            .antMatchers(HttpMethod.POST, "/user/birthday").permitAll()
+
+            .antMatchers(HttpMethod.POST, "/schedule").permitAll()
+            .antMatchers(HttpMethod.PUT, "/schedule/{schedule-id}").permitAll()
+            .antMatchers(HttpMethod.DELETE, "/schedule/{schedule-id}").permitAll()
+            .antMatchers(HttpMethod.GET, "/schedule").permitAll()
 
             .anyRequest().authenticated()
 
