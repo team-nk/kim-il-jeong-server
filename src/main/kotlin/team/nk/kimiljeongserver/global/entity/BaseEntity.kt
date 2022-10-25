@@ -1,5 +1,6 @@
 package team.nk.kimiljeongserver.global.entity
 
+import java.time.LocalDateTime
 import java.time.ZonedDateTime
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -12,5 +13,5 @@ abstract class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int = 0
 
-    val createdAt: ZonedDateTime = ZonedDateTime.now()
+    val createdAt: LocalDateTime = LocalDateTime.now()
 }
