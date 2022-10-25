@@ -8,4 +8,8 @@ import team.nk.kimiljeongserver.domain.user.domain.User
 interface UserRepository : CrudRepository<User, Int> {
 
     fun findByEmail(email: String): User?
+
+    fun existsByAccountId(accountId: String): Boolean
+
+    fun existsByEmail(email: String): Boolean
 }
