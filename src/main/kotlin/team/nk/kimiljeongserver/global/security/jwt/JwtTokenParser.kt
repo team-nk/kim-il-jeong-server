@@ -33,13 +33,13 @@ class JwtTokenParser(
 
     fun resolveToken(httpServletRequest: HttpServletRequest): String? {
         val bearerToken: String? = httpServletRequest.getHeader(JWT_HEADER)
-        return bearerToken?.let { parseToken(it) }
+        return parseToken(bearerToken)
     }
 
-    fun parseToken(token: String): String {
-        if (token.startsWith(JWT_PREFIX)) {
+    fun parseToken(token: String?): String? {
+        return if (token != null && token.startsWith(JWT_PREFIX)) {
             return token.replace(JWT_PREFIX, "")
-        } else throw JwtValidateException.EXCEPTION
+        } else null
     }
 
     private fun getTokenSubject(subject: String): String {

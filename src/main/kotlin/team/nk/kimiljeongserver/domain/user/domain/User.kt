@@ -3,7 +3,7 @@ package team.nk.kimiljeongserver.domain.user.domain
 import org.hibernate.validator.constraints.Length
 import team.nk.kimiljeongserver.global.entity.BaseEntity
 import team.nk.kimiljeongserver.infrastructure.aws.defaultImage.DefaultImage
-import java.time.LocalDateTime
+import java.time.LocalDate
 import javax.persistence.Entity
 import javax.persistence.Table
 import javax.validation.constraints.NotNull
@@ -21,7 +21,7 @@ class User(
 
     password: String,
 
-    birthday: LocalDateTime = LocalDateTime.now(),
+    birthday: LocalDate = LocalDate.now(),
 
     profile: String = DefaultImage.PROFILE_IMAGE
 
@@ -40,7 +40,7 @@ class User(
     var profile = profile
         protected set
 
-    fun modifyBirthday(birthday: LocalDateTime) {
+    fun modifyBirthday(birthday: LocalDate) {
         this.birthday = birthday
     }
 }

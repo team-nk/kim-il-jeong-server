@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional
 import team.nk.kimiljeongserver.domain.user.domain.User
 import team.nk.kimiljeongserver.domain.user.domain.repository.UserRepository
 import team.nk.kimiljeongserver.domain.user.exception.PasswordMissMatchedException
+import team.nk.kimiljeongserver.domain.user.exception.UserAlreadyExistsException
 import team.nk.kimiljeongserver.domain.user.presentation.dto.request.SaveUserRequest
 //import team.nk.kimiljeongserver.infrastructure.aws.email.RegisterMailService
 
@@ -22,6 +23,10 @@ class SignupUserService(
 
         if (saveUserRequest.password != saveUserRequest.rePassword) {
             throw PasswordMissMatchedException.EXCEPTION
+        }
+
+        if (userRepository.existsByAccountId(saveUserRequest.accountId) || userRepository.existsByEmail(saveUserRequest.email)) {
+            throw UserAlreadyExistsException.EXCEPTION
         }
 
         userRepository.save(
