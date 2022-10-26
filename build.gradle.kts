@@ -6,7 +6,6 @@ plugins {
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
 	kotlin("plugin.jpa") version "1.6.21"
-	kotlin("kapt") version "1.4.10"
 }
 
 configurations {
@@ -27,6 +26,12 @@ repositories {
 	mavenCentral()
 }
 
+dependencyManagement {
+	imports {
+		mavenBom("org.springframework.cloud:spring-cloud-aws-dependencies:2.2.6.RELEASE")
+	}
+}
+
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("io.jsonwebtoken:jjwt:0.9.1")
@@ -42,6 +47,7 @@ dependencies {
 	implementation("org.projectlombok:lombok:1.18.24")
 	runtimeOnly("mysql:mysql-connector-java")
 	implementation("javax.servlet:javax.servlet-api:4.0.1")
+	implementation ("org.springframework.cloud:spring-cloud-starter-aws")
 	implementation ("org.springdoc:springdoc-openapi-ui:1.6.11")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")

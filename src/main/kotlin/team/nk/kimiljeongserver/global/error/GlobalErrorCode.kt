@@ -16,7 +16,10 @@ enum class GlobalErrorCode(
     JWT_VALIDATE_FAILED(HttpStatus.UNAUTHORIZED, "Token Validate Failed"),
     JWT_EXPIRED(HttpStatus.UNAUTHORIZED, "Jwt Token Expired"),
     JWT_SIGNATURE(HttpStatus.UNAUTHORIZED, "Invalid Signature"),
-    UNEXPECTED_TOKEN(HttpStatus.INTERNAL_SERVER_ERROR, "Unexpected Token Exception");
+    UNEXPECTED_TOKEN(HttpStatus.INTERNAL_SERVER_ERROR, "Unexpected Token Exception"),
+
+    IMAGE_NOT_FOUND(HttpStatus.NOT_FOUND, "Image Not Found"),
+    INVALID_IMAGE_EXTENSION_FORMAT(HttpStatus.UNAUTHORIZED, "Invalid Image Extension Format");
 
     override fun status() = status.value()
     override fun message() = message
