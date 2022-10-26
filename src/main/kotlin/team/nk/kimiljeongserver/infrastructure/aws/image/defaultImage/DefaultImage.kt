@@ -1,4 +1,4 @@
-package team.nk.kimiljeongserver.infrastructure.aws.defaultImage
+package team.nk.kimiljeongserver.infrastructure.aws.image.defaultImage
 
 class DefaultImage {
     companion object {

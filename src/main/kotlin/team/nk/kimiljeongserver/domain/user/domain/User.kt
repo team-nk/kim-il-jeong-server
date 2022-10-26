@@ -2,7 +2,7 @@ package team.nk.kimiljeongserver.domain.user.domain
 
 import org.hibernate.validator.constraints.Length
 import team.nk.kimiljeongserver.global.entity.BaseEntity
-import team.nk.kimiljeongserver.infrastructure.aws.defaultImage.DefaultImage
+import team.nk.kimiljeongserver.infrastructure.aws.image.defaultImage.DefaultImage
 import java.time.LocalDate
 import javax.persistence.Entity
 import javax.persistence.Table
