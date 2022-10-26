@@ -8,10 +8,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import team.nk.kimiljeongserver.domain.schedule.presentation.dto.request.ScheduleRequest
 import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.ScheduleListResponse
-import team.nk.kimiljeongserver.domain.schedule.service.CreateScheduleService
-import team.nk.kimiljeongserver.domain.schedule.service.DeleteScheduleService
-import team.nk.kimiljeongserver.domain.schedule.service.ModifyScheduleService
-import team.nk.kimiljeongserver.domain.schedule.service.QueryScheduleService
+import team.nk.kimiljeongserver.domain.schedule.service.*
 import java.time.LocalDateTime
 import javax.validation.Valid
 
@@ -22,7 +19,8 @@ class ScheduleController(
     private val createScheduleService: CreateScheduleService,
     private val modifyScheduleService: ModifyScheduleService,
     private val deleteScheduleService: DeleteScheduleService,
-    private val queryScheduleService: QueryScheduleService
+    private val queryScheduleService: QueryScheduleService,
+    private val queryMyScheduleService: QueryMyScheduleService
 ) {
 
     @Operation(summary = "일정 생성")
@@ -52,5 +50,10 @@ class ScheduleController(
         return queryScheduleService.execute(date)
     }
 
+    @Operation(summary = "자신의 전체 일정 보기")
+    @GetMapping("/list")
+    fun querySchedule(): ScheduleListResponse {
+        return queryMyScheduleService.execute()
+    }
 
 }
