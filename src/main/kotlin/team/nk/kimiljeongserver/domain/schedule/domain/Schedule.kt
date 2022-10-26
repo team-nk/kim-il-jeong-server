@@ -12,8 +12,6 @@ import javax.validation.constraints.NotNull
 @Table(name = "tbl_schedule")
 class Schedule(
 
-    override var createdAt: LocalDateTime,
-
     content: String,
 
     latitude: Double,
@@ -23,6 +21,8 @@ class Schedule(
     color: Color,
 
     isAlways: Boolean,
+
+    startTime: LocalDateTime,
 
     endTime: LocalDateTime,
 
@@ -55,6 +55,10 @@ class Schedule(
         protected set
 
     @NotNull
+    var startTime = startTime
+        protected set
+
+    @NotNull
     var endTime = endTime
         protected set
 
@@ -64,7 +68,7 @@ class Schedule(
         longitude: Double,
         color: Color,
         isAlways: Boolean,
-        createdAt: LocalDateTime,
+        startTime: LocalDateTime,
         endTime: LocalDateTime
     ) {
         this.content = content
@@ -72,7 +76,7 @@ class Schedule(
         this.longitude = longitude
         this.color = color
         this.isAlways = isAlways
-        this.createdAt = createdAt
+        this.startTime = startTime
         this.endTime = endTime
     }
 }

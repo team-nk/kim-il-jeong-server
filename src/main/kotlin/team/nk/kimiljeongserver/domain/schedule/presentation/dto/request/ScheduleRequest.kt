@@ -19,7 +19,7 @@ data class ScheduleRequest(
 
     val isAlways: Boolean,
 
-    val createdAt: LocalDateTime,
+    val startTime: LocalDateTime,
 
     val endTime: LocalDateTime
 )

@@ -7,6 +7,7 @@ data class ScheduleElement(
     val scheduleId: Int,
     val content: String,
     val color: Color,
-    val time: LocalDateTime,
+    val startTime: LocalDateTime,
+    val endTime: LocalDateTime,
     val isAlways: Boolean
 )

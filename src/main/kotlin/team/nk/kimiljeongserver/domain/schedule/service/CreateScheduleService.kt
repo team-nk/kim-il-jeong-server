@@ -25,7 +25,7 @@ class CreateScheduleService(
                 longitude = scheduleRequest.longitude,
                 color = scheduleRequest.color,
                 isAlways = scheduleRequest.isAlways,
-                createdAt = scheduleRequest.createdAt,
+                startTime = scheduleRequest.startTime,
                 endTime = scheduleRequest.endTime,
                 user = user
             )

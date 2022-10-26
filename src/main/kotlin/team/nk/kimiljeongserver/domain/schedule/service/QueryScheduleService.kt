@@ -27,7 +27,8 @@ class QueryScheduleService(
                 it.id,
                 it.content,
                 it.color,
-                it.createdAt,
+                it.startTime,
+                it.endTime,
                 it.isAlways
             )
         }
@@ -36,10 +37,10 @@ class QueryScheduleService(
     }
 
     private fun isToday(date: LocalDateTime, schedule: Schedule): Boolean {
-        val createTime = schedule.createdAt
+        val startTime = schedule.startTime
         val tomorrow = date.plusDays(1)
 
-        return createTime.isAfter(date) && createTime.isBefore(tomorrow)
+        return startTime.isAfter(date) && startTime.isBefore(tomorrow)
     }
 }
 
