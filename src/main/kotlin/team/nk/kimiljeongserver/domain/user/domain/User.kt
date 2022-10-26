@@ -43,4 +43,8 @@ class User(
     fun modifyBirthday(birthday: LocalDate) {
         this.birthday = birthday
     }
+
+    fun modifyPassword(password: String) {
+        this.password = password
+    }
 }
