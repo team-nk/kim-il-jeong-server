@@ -4,7 +4,6 @@ import org.hibernate.validator.constraints.Length
 import team.nk.kimiljeongserver.global.entity.BaseEntity
 import team.nk.kimiljeongserver.infrastructure.aws.defaultImage.DefaultImage
 import java.time.LocalDate
-import java.time.LocalDateTime
 import javax.persistence.Entity
 import javax.persistence.Table
 import javax.validation.constraints.NotNull
