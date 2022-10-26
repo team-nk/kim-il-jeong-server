@@ -21,6 +21,7 @@ class CreateScheduleService(
         scheduleRepository.save(
             Schedule(
                 content = scheduleRequest.content,
+                address = scheduleRequest.address,
                 latitude = scheduleRequest.latitude,
                 longitude = scheduleRequest.longitude,
                 color = scheduleRequest.color,

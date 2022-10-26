@@ -14,6 +14,8 @@ class Schedule(
 
     content: String,
 
+    address: String,
+
     latitude: Double,
 
     longitude: Double,
@@ -35,6 +37,10 @@ class Schedule(
     @field:NotNull
     @Length(max = 100)
     var content = content
+        protected set
+
+    @field:NotNull
+    var address = address
         protected set
 
     @field: NotNull

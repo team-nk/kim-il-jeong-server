@@ -11,6 +11,8 @@ data class ScheduleRequest(
     @field: NotBlank(message = "content는 필수 입력입니다.")
     val content: String,
 
+    val address: String,
+
     val latitude: Double,
 
     val longitude: Double,
