@@ -24,12 +24,12 @@ class QueryScheduleService(
             isToday(date, it)
         }?.map {
             ScheduleElement(
-                it.id,
-                it.content,
-                it.color,
-                it.startTime,
-                it.endTime,
-                it.isAlways
+                scheduleId = it.id,
+                content = it.content,
+                color = it.color,
+                startTime = it.startTime,
+                endTime = it.endTime,
+                isAlways = it.isAlways
             )
         }
 
