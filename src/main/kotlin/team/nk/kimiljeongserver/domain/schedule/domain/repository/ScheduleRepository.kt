@@ -10,5 +10,8 @@ interface ScheduleRepository : CrudRepository<Schedule, Int> {
 
     fun findScheduleById(scheduleId: Int): Schedule?
 
-    fun findAllByUserOrderByCreatedAt(user: User): List<Schedule>?
+    fun findAllByUserOrderByStartTimeAsc(user: User): List<Schedule>?
+
+    fun findAllByUserOrderByStartTimeDesc(user: User): List<Schedule>?
+
 }

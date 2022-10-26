@@ -20,7 +20,7 @@ class QueryScheduleService(
     fun execute(date: LocalDateTime): ScheduleListResponse {
         val user = userFacade.getCurrentUser()
 
-        val list = scheduleRepository.findAllByUserOrderByCreatedAt(user)?.filter {
+        val list = scheduleRepository.findAllByUserOrderByStartTimeAsc(user)?.filter {
             isToday(date, it)
         }?.map {
             ScheduleElement(
