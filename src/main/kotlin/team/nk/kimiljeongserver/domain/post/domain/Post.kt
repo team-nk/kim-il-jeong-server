@@ -2,12 +2,8 @@ package team.nk.kimiljeongserver.domain.post.domain
 
 import org.hibernate.validator.constraints.Length
 import team.nk.kimiljeongserver.domain.schedule.domain.Schedule
-import team.nk.kimiljeongserver.domain.schedule.domain.type.Color
 import team.nk.kimiljeongserver.domain.user.domain.User
 import team.nk.kimiljeongserver.global.entity.BaseEntity
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import javax.persistence.*
 import javax.validation.constraints.NotNull
 
