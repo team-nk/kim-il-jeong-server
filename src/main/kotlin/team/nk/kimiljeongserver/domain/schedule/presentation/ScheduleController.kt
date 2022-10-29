@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import team.nk.kimiljeongserver.domain.schedule.presentation.dto.request.ScheduleRequest
+import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.ChooseScheduleListResponse
 import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.ScheduleListResponse
 import team.nk.kimiljeongserver.domain.schedule.service.*
 import java.time.LocalDateTime
@@ -20,7 +21,8 @@ class ScheduleController(
     private val modifyScheduleService: ModifyScheduleService,
     private val deleteScheduleService: DeleteScheduleService,
     private val queryScheduleService: QueryScheduleService,
-    private val queryMyScheduleService: QueryMyScheduleService
+    private val queryMyScheduleService: QueryMyScheduleService,
+    private val chooseScheduleService: QueryChooseScheduleService
 ) {
 
     @Operation(summary = "일정 생성")
@@ -54,6 +56,12 @@ class ScheduleController(
     @GetMapping("/list")
     fun querySchedule(): ScheduleListResponse {
         return queryMyScheduleService.execute()
+    }
+
+    @Operation(summary = "일정 선택 리스트 보기")
+    @GetMapping("/choose")
+    fun queryChooseSchedule(): ChooseScheduleListResponse {
+        return chooseScheduleService.execute()
     }
 
 }
