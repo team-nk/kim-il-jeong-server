@@ -6,6 +6,7 @@ plugins {
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
 	kotlin("plugin.jpa") version "1.6.21"
+	kotlin("kapt") version "1.6.10"
 }
 
 configurations {
@@ -48,9 +49,15 @@ dependencies {
 	runtimeOnly("mysql:mysql-connector-java")
 	implementation("javax.servlet:javax.servlet-api:4.0.1")
 	implementation ("org.springframework.cloud:spring-cloud-starter-aws")
+	implementation("com.querydsl:querydsl-jpa:5.0.0")
+	kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
 	implementation ("org.springdoc:springdoc-openapi-ui:1.6.11")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
+}
+
+kotlin.sourceSets.main {
+	kotlin.srcDir("$buildDir/generated/source/kapt/main")
 }
 
 noArg {
