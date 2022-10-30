@@ -6,4 +6,5 @@ import team.nk.kimiljeongserver.domain.post.domain.Post
 
 @Repository
 interface PostRepository : CrudRepository<Post, Int>, CustomPostRepository {
+    fun findPostById(postId: Int): Post?
 }
