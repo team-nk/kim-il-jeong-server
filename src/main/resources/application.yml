@@ -1,6 +1,3 @@
-server:
-  port: 8080
-
 spring:
   datasource:
     url: ${DB_URL}
@@ -49,3 +46,10 @@ cloud:
       static: ${S3_REGION:ap-northeast-2}
     stack:
       auto: false
+
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error
