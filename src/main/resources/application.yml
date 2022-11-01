@@ -27,6 +27,7 @@ jwt:
 redis:
   port: ${REDIS_PORT}
   host: ${REDIS_HOST}
+  password: ${REDIS_PASS}
 
 aws:
   ses:
