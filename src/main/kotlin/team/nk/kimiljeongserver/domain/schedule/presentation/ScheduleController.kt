@@ -69,11 +69,8 @@ class ScheduleController(
 
     @Operation(summary = "지도로 일정 리스트 보기")
     @GetMapping("/map")
-    fun queryScheduleByMap(
-        @RequestParam(value = "date") @DateTimeFormat(iso = ISO.DATE_TIME) date: LocalDateTime,
-        @Valid @RequestBody request: ScheduleByMapRequest
-    ): ScheduleByMapListResponse {
-        return queryScheduleByMapService.execute(date, request)
+    fun queryScheduleByMap(@Valid @RequestBody request: ScheduleByMapRequest): ScheduleByMapListResponse {
+        return queryScheduleByMapService.execute(request)
     }
 
 }

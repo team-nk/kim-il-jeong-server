@@ -17,11 +17,11 @@ class QueryScheduleByMapService(
 ) {
 
     @Transactional(readOnly = true)
-    fun execute(date: LocalDateTime, request: ScheduleByMapRequest): ScheduleByMapListResponse {
+    fun execute(request: ScheduleByMapRequest): ScheduleByMapListResponse {
         val user = userFacade.getCurrentUser()
         val scheduleList = scheduleRepository.findAllSchedule(request.latitude, request.longitude, request.distance)
             .filter {
-                isToday(date, it) && it.user == user
+                isToday(it) && it.user == user
             }
             .map {
                 ScheduleByMapElement(
@@ -33,10 +33,10 @@ class QueryScheduleByMapService(
             }
 
         return ScheduleByMapListResponse(scheduleList)
-
     }
 
-    private fun isToday(date: LocalDateTime, schedule: Schedule): Boolean {
+    private fun isToday(schedule: Schedule): Boolean {
+        val date = LocalDateTime.now()
         val startTime = schedule.startTime
         val tomorrow = date.plusDays(1)
 
