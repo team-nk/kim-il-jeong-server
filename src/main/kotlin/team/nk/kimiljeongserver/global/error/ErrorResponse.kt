@@ -9,10 +9,6 @@ data class ErrorResponse(
 ) {
 
     companion object {
-        fun of(errorProperty: ErrorProperty) = ErrorResponse(
-            errorProperty.status(),
-            errorProperty.message()
-        )
 
         fun of(e: BindException): BindErrorResponse {
             val errorMap = HashMap<String, String?>()
