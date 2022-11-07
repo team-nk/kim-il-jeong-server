@@ -6,8 +6,10 @@ import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.format.annotation.DateTimeFormat.ISO
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import team.nk.kimiljeongserver.domain.schedule.presentation.dto.request.ScheduleByMapRequest
 import team.nk.kimiljeongserver.domain.schedule.presentation.dto.request.ScheduleRequest
 import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.ChooseScheduleListResponse
+import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.ScheduleByMapListResponse
 import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.ScheduleListResponse
 import team.nk.kimiljeongserver.domain.schedule.service.*
 import java.time.LocalDateTime
@@ -22,7 +24,8 @@ class ScheduleController(
     private val deleteScheduleService: DeleteScheduleService,
     private val queryScheduleService: QueryScheduleService,
     private val queryMyScheduleService: QueryMyScheduleService,
-    private val chooseScheduleService: QueryChooseScheduleService
+    private val chooseScheduleService: QueryChooseScheduleService,
+    private val queryScheduleByMapService: QueryScheduleByMapService
 ) {
 
     @Operation(summary = "일정 생성")
@@ -62,6 +65,15 @@ class ScheduleController(
     @GetMapping("/choose")
     fun queryChooseSchedule(): ChooseScheduleListResponse {
         return chooseScheduleService.execute()
+    }
+
+    @Operation(summary = "지도로 일정 리스트 보기")
+    @GetMapping("/map")
+    fun queryScheduleByMap(
+        @RequestParam(value = "date") @DateTimeFormat(iso = ISO.DATE_TIME) date: LocalDateTime,
+        @Valid @RequestBody request: ScheduleByMapRequest
+    ): ScheduleByMapListResponse {
+        return queryScheduleByMapService.execute(date, request)
     }
 
 }
