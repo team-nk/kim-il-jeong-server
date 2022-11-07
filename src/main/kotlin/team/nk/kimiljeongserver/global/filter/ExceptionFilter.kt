@@ -23,11 +23,12 @@ class ExceptionFilter : OncePerRequestFilter() {
         } catch (e: KimIlJeongException) {
             errorToJson(e.errorProperty, response)
         } catch (e: Exception) {
-            if (e.cause is KimIlJeongException) {
-                errorToJson((e.cause as KimIlJeongException).errorProperty, response)
-            } else {
-                errorToJson(InternalServerErrorException.EXCEPTION.errorProperty, response)
-                e.printStackTrace()
+            when (e.cause) {
+                is KimIlJeongException -> errorToJson((e.cause as KimIlJeongException).errorProperty, response)
+                else -> {
+                    errorToJson(InternalServerErrorException.EXCEPTION.errorProperty, response)
+                    e.printStackTrace()
+                }
             }
         }
     }
