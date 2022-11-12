@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service
 import team.nk.kimiljeongserver.domain.auth.domain.Code
 import team.nk.kimiljeongserver.domain.auth.domain.repository.CodeRepository
 import team.nk.kimiljeongserver.domain.auth.presentation.dto.request.MailRequest
-import team.nk.kimiljeongserver.global.exception.CodeNotFoundException
 import java.io.UnsupportedEncodingException
 import javax.mail.MessagingException
 import javax.mail.internet.InternetAddress
