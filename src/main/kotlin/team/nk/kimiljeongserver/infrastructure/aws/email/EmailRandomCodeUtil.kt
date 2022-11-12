@@ -1,21 +1,17 @@
 package team.nk.kimiljeongserver.infrastructure.aws.email
 
+import org.springframework.stereotype.Component
 import java.security.SecureRandom
 
-
-class EmailRandomCodeUtil(
-    private val random: SecureRandom
-) {
+@Component
+class EmailRandomCodeUtil {
 
     fun generateCode(): String {
+        val random = SecureRandom()
         val randomList = ArrayList<Char>()
         var codeList = ""
 
         for (n in '0'..'9') {
-            randomList.add(n)
-        }
-
-        for (n in 'a'..'z') {
             randomList.add(n)
         }
 
