@@ -11,7 +11,7 @@ data class SaveUserRequest(
     @field: NotBlank(message = "email은 필수 입력입니다.")
     val email: String,
 
-    val code: Int,
+    val code: String,
 
     @field:Size(min = 5, max = 20, message = "accountId는 5~20자리 이내로 이내로 입력해주세요.")
     @field:NotBlank(message = "accountId는 필수 입력입니다.")

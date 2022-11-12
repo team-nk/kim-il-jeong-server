@@ -5,10 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import team.nk.kimiljeongserver.domain.auth.presentation.dto.response.TokenResponse
-import team.nk.kimiljeongserver.domain.user.presentation.dto.request.LoginUserRequest
-import team.nk.kimiljeongserver.domain.user.presentation.dto.request.ModifyBirthdayRequest
-import team.nk.kimiljeongserver.domain.user.presentation.dto.request.ModifyPasswordRequest
-import team.nk.kimiljeongserver.domain.user.presentation.dto.request.SaveUserRequest
+import team.nk.kimiljeongserver.domain.user.presentation.dto.request.*
 import team.nk.kimiljeongserver.domain.user.presentation.dto.response.QueryMyInfoResponse
 import team.nk.kimiljeongserver.domain.user.service.*
 import javax.validation.Valid
@@ -21,7 +18,8 @@ class UserController(
     private val loginUserService: LoginUserService,
     private val modifyBirthdayService: ModifyBirthdayService,
     private val modifyPasswordService: ModifyPasswordService,
-    private val queryMyInfoService: QueryMyInfoService
+    private val queryMyInfoService: QueryMyInfoService,
+    private val userExistsService: AlreadyUserExistsService
 ) {
 
     @Operation(summary = "회원가입")
@@ -55,5 +53,11 @@ class UserController(
     @GetMapping
     fun queryMyInfo(): QueryMyInfoResponse {
         return queryMyInfoService.execute();
+    }
+
+    @Operation(summary = "아이디 중복 확인")
+    @GetMapping("/check")
+    fun check(@RequestBody @Valid request: CheckUserRequest): Boolean {
+        return userExistsService.execute(request);
     }
 }
