@@ -18,22 +18,26 @@ spring:
   redis:
     port: ${REDIS_PORT}
     host: ${REDIS_HOST}
-    password: ${REDIS_PASS}
 
   jackson:
     property-naming-strategy: SNAKE_CASE
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 jwt:
   secret-key: ${JWT_SECRET_KEY}
   access-exp: ${JWT_ACCESS_EXP}
   refresh-exp: ${JWT_REFRESH_EXP}
-
-aws:
-  ses:
-    access-token: ${AWS_ACCESS_TOKEN}
-    secret-key: ${AWS_SECRET_KEY}
-    ses-source: ${AWS_SES_SOURCE}
-    region: ${AWS_REGIONS}
 
 cloud:
   aws:
@@ -53,3 +57,10 @@ logging:
       amazonaws:
         util:
           EC2MetadataUtils: error
+
+aws:
+  ses:
+    access-token: ${AWS_ACCESS_TOKEN}
+    secret-key: ${AWS_SECRET_KEY}
+    ses-source: ${AWS_SES_SOURCE}
+    region: ${AWS_REGIONS}

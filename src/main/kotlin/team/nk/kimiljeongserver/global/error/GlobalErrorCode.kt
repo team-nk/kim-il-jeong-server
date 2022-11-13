@@ -18,6 +18,8 @@ enum class GlobalErrorCode(
     JWT_SIGNATURE(HttpStatus.UNAUTHORIZED, "Invalid Signature"),
     UNEXPECTED_TOKEN(HttpStatus.INTERNAL_SERVER_ERROR, "Unexpected Token Exception"),
 
+    CODE_NOT_FOUND(HttpStatus.NOT_FOUND, "Code Not Found"),
+
     IMAGE_NOT_FOUND(HttpStatus.NOT_FOUND, "Image Not Found"),
     INVALID_IMAGE_EXTENSION_FORMAT(HttpStatus.UNAUTHORIZED, "Invalid Image Extension Format");
 

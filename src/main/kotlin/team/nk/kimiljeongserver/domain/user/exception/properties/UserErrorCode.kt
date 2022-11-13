@@ -11,7 +11,8 @@ enum class UserErrorCode(
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "User Not Found"),
     USER_ALREADY_EXISTS(HttpStatus.CONFLICT, "User Already Exists"),
 
-    PASSWORD_MISS_MATCHED(HttpStatus.UNAUTHORIZED, "Password Miss Matched");
+    PASSWORD_MISS_MATCHED(HttpStatus.UNAUTHORIZED, "Password Miss Matched"),
+    CODE_MISS_MATCHED(HttpStatus.UNAUTHORIZED, "Code Miss Matched");
 
     override fun status() = status.value()
     override fun message() = message
