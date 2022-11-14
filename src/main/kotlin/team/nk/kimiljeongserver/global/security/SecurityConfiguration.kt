@@ -33,14 +33,30 @@ class SecurityConfiguration(
             .antMatchers("/v3/api-docs/**").permitAll()
 
             .antMatchers(HttpMethod.POST, "/user").permitAll()
+            .antMatchers(HttpMethod.GET, "/user").permitAll()
             .antMatchers(HttpMethod.POST, "/user/login").permitAll()
-            .antMatchers(HttpMethod.POST, "/user/birthday").permitAll()
+            .antMatchers(HttpMethod.PATCH, "/user/password").authenticated()
+            .antMatchers(HttpMethod.PATCH, "/user/birthday").authenticated()
+            .antMatchers(HttpMethod.GET, "/user/check").permitAll()
 
-            .antMatchers(HttpMethod.POST, "/schedule").permitAll()
-            .antMatchers(HttpMethod.PUT, "/schedule/{schedule-id}").permitAll()
-            .antMatchers(HttpMethod.DELETE, "/schedule/{schedule-id}").permitAll()
-            .antMatchers(HttpMethod.GET, "/schedule").permitAll()
+            .antMatchers(HttpMethod.POST, "/schedule").authenticated()
+            .antMatchers(HttpMethod.PUT, "/schedule/{schedule-id}").authenticated()
+            .antMatchers(HttpMethod.DELETE, "/schedule/{schedule-id}").authenticated()
+            .antMatchers(HttpMethod.GET, "/schedule").authenticated()
+            .antMatchers(HttpMethod.GET, "/schedule/map").authenticated()
+            .antMatchers(HttpMethod.GET, "/schedule/list").authenticated()
+            .antMatchers(HttpMethod.GET, "/schedule/choose").authenticated()
 
+            .antMatchers(HttpMethod.POST, "/post").authenticated()
+            .antMatchers(HttpMethod.GET, "/post").authenticated()
+            .antMatchers(HttpMethod.GET, "/post/birthday").authenticated()
+
+            .antMatchers(HttpMethod.GET, "/mail").permitAll()
+            .antMatchers(HttpMethod.POST, "/image").permitAll()
+
+            .antMatchers(HttpMethod.POST, "/comment/{post-id}").authenticated()
+            .antMatchers(HttpMethod.GET, "/comment").authenticated()
+                
             .anyRequest().authenticated()
 
         http
