@@ -19,7 +19,8 @@ class UserController(
     private val modifyBirthdayService: ModifyBirthdayService,
     private val modifyPasswordService: ModifyPasswordService,
     private val queryMyInfoService: QueryMyInfoService,
-    private val userExistsService: AlreadyUserExistsService
+    private val userExistsService: AlreadyUserExistsService,
+    private val userCheckCodeService: UserCheckCodeService
 ) {
 
     @Operation(summary = "회원가입")
@@ -57,7 +58,13 @@ class UserController(
 
     @Operation(summary = "아이디 중복 확인")
     @GetMapping("/check")
-    fun check(@RequestBody @Valid request: CheckUserRequest): Boolean {
+    fun checkAccountId(@RequestBody @Valid request: CheckUserRequest): Boolean {
         return userExistsService.execute(request);
+    }
+
+    @Operation(summary = "코드 확인")
+    @GetMapping("/code")
+    fun checkCode(@RequestBody @Valid request: CheckCodeRequest): Boolean {
+        return userCheckCodeService.execute(request);
     }
 }
