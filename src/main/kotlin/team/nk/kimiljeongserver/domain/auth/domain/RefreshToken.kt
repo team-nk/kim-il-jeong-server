@@ -9,9 +9,9 @@ import javax.validation.constraints.NotBlank
 @RedisHash
 class RefreshToken(
     @Id
+    @Indexed
     val email: String,
 
-    @Indexed
     @NotBlank
     val token: String,
 
