@@ -38,6 +38,7 @@ class SecurityConfiguration(
             .antMatchers(HttpMethod.PATCH, "/user/password").authenticated()
             .antMatchers(HttpMethod.PATCH, "/user/birthday").authenticated()
             .antMatchers(HttpMethod.GET, "/user/check").permitAll()
+            .antMatchers(HttpMethod.GET, "/user/code").permitAll()
 
             .antMatchers(HttpMethod.POST, "/schedule").authenticated()
             .antMatchers(HttpMethod.PUT, "/schedule/{schedule-id}").authenticated()

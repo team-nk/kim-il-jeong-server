@@ -5,7 +5,10 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import team.nk.kimiljeongserver.domain.auth.presentation.dto.response.TokenResponse
-import team.nk.kimiljeongserver.domain.user.presentation.dto.request.*
+import team.nk.kimiljeongserver.domain.user.presentation.dto.request.LoginUserRequest
+import team.nk.kimiljeongserver.domain.user.presentation.dto.request.ModifyBirthdayRequest
+import team.nk.kimiljeongserver.domain.user.presentation.dto.request.ModifyPasswordRequest
+import team.nk.kimiljeongserver.domain.user.presentation.dto.request.SaveUserRequest
 import team.nk.kimiljeongserver.domain.user.presentation.dto.response.QueryMyInfoResponse
 import team.nk.kimiljeongserver.domain.user.service.*
 import javax.validation.Valid
@@ -58,13 +61,13 @@ class UserController(
 
     @Operation(summary = "아이디 중복 확인")
     @GetMapping("/check")
-    fun checkAccountId(@RequestBody @Valid request: CheckUserRequest): Boolean {
-        return userExistsService.execute(request);
+    fun checkAccountId(@RequestParam("account-id") accountId: String): Boolean {
+        return userExistsService.execute(accountId);
     }
 
     @Operation(summary = "코드 확인")
     @GetMapping("/code")
-    fun checkCode(@RequestBody @Valid request: CheckCodeRequest): Boolean {
-        return userCheckCodeService.execute(request);
+    fun checkCode(@RequestParam("email") email: String, @RequestParam("code") code: String): Boolean {
+        return userCheckCodeService.execute(email, code);
     }
 }
