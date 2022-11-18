@@ -8,7 +8,6 @@ import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.stereotype.Service
 import team.nk.kimiljeongserver.domain.auth.domain.Code
 import team.nk.kimiljeongserver.domain.auth.domain.repository.CodeRepository
-import team.nk.kimiljeongserver.domain.auth.presentation.dto.request.MailRequest
 import java.io.UnsupportedEncodingException
 import javax.mail.MessagingException
 import javax.mail.internet.InternetAddress
@@ -129,13 +128,13 @@ class SendMailService(
     }
 
     @Throws(Exception::class)
-    fun sendSimpleMessage(request: MailRequest): String  {
-        val message = createMessage(request.email)
+    fun sendSimpleMessage(request: String): String {
+        val message = createMessage(request)
         try {
             javaMailSender.send(message) // 메일 발송
             codeRepository.save(
                 Code(
-                    email = request.email,
+                    email = request,
                     value = code
                 )
             )
