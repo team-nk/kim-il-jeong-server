@@ -7,6 +7,8 @@ data class PostElement(
     val scheduleContent: String,
     val address: String,
     val color: Color,
+    val commentCount: Int,
+    val isMine: Boolean,
     val accountId: String,
-    val createTime: String
+    val createTime: String,
 )
