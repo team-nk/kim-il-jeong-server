@@ -52,7 +52,7 @@ class SecurityConfiguration(
             .antMatchers(HttpMethod.GET, "/post").authenticated()
             .antMatchers(HttpMethod.GET, "/post/birthday").authenticated()
 
-            .antMatchers(HttpMethod.GET, "/mail").permitAll()
+            .antMatchers(HttpMethod.GET, "/mail/**").permitAll()
             .antMatchers(HttpMethod.POST, "/image").permitAll()
 
             .antMatchers(HttpMethod.GET, "/google").permitAll()
