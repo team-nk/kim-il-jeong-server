@@ -20,6 +20,11 @@ enum class GlobalErrorCode(
 
     CODE_NOT_FOUND(HttpStatus.NOT_FOUND, "Code Not Found"),
 
+    FEIGN_BAD_REQUEST(HttpStatus.BAD_REQUEST, "Feign Bad Request"),
+    FEIGN_EXPIRED_TOKEN(HttpStatus.REQUEST_TIMEOUT, "Feign Expired Token"),
+    FEIGN_FORBIDDEN(HttpStatus.FORBIDDEN, "Feign Forbidden"),
+    FEIGN_UN_AUTHORIZED(HttpStatus.UNAUTHORIZED, "Feign Unauthorized"),
+
     IMAGE_NOT_FOUND(HttpStatus.NOT_FOUND, "Image Not Found"),
     INVALID_IMAGE_EXTENSION_FORMAT(HttpStatus.UNAUTHORIZED, "Invalid Image Extension Format");
 
