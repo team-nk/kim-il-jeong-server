@@ -52,6 +52,7 @@ dependencies {
 	implementation("com.querydsl:querydsl-jpa:5.0.0")
 	kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
 	implementation ("org.springdoc:springdoc-openapi-ui:1.6.11")
+	implementation("org.springframework.cloud:spring-cloud-starter-openfeign:3.1.4")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 }

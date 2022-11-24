@@ -65,3 +65,9 @@ aws:
     secret-key: ${AWS_SECRET_KEY}
     ses-source: ${AWS_SES_SOURCE}
     region: ${AWS_REGIONS}
+
+auth:
+  google:
+    client-id: ${GOOGLE_CLIENT_ID}
+  kakao:
+    client-id: ${KAKAO_REST_API}
