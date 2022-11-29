@@ -33,7 +33,7 @@ class SecurityConfiguration(
             .antMatchers("/v3/api-docs/**").permitAll()
 
             .antMatchers(HttpMethod.POST, "/user").permitAll()
-            .antMatchers(HttpMethod.GET, "/user").permitAll()
+            .antMatchers(HttpMethod.GET, "/user").authenticated()
             .antMatchers(HttpMethod.POST, "/user/login").permitAll()
             .antMatchers(HttpMethod.PATCH, "/user/password").authenticated()
             .antMatchers(HttpMethod.PATCH, "/user/birthday").authenticated()
@@ -54,8 +54,6 @@ class SecurityConfiguration(
 
             .antMatchers(HttpMethod.GET, "/mail/**").permitAll()
             .antMatchers(HttpMethod.POST, "/image").permitAll()
-
-            .antMatchers(HttpMethod.GET, "/google").permitAll()
 
             .antMatchers(HttpMethod.POST, "/comment/{post-id}").authenticated()
             .antMatchers(HttpMethod.GET, "/comment").authenticated()
