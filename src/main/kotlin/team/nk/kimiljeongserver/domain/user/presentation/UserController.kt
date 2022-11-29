@@ -9,6 +9,7 @@ import team.nk.kimiljeongserver.domain.user.presentation.dto.request.LoginUserRe
 import team.nk.kimiljeongserver.domain.user.presentation.dto.request.ModifyBirthdayRequest
 import team.nk.kimiljeongserver.domain.user.presentation.dto.request.ModifyPasswordRequest
 import team.nk.kimiljeongserver.domain.user.presentation.dto.request.SaveUserRequest
+import team.nk.kimiljeongserver.domain.user.presentation.dto.response.QueryBooleanResponse
 import team.nk.kimiljeongserver.domain.user.presentation.dto.response.QueryMyInfoResponse
 import team.nk.kimiljeongserver.domain.user.service.*
 import javax.validation.Valid
@@ -61,13 +62,13 @@ class UserController(
 
     @Operation(summary = "아이디 중복 확인")
     @GetMapping("/check")
-    fun checkAccountId(@RequestParam("account-id") accountId: String): Boolean {
+    fun checkAccountId(@RequestParam("account-id") accountId: String): QueryBooleanResponse {
         return userExistsService.execute(accountId);
     }
 
     @Operation(summary = "코드 확인")
     @GetMapping("/code")
-    fun checkCode(@RequestParam("email") email: String, @RequestParam("code") code: String): Boolean {
+    fun checkCode(@RequestParam("email") email: String, @RequestParam("code") code: String): QueryBooleanResponse {
         return userCheckCodeService.execute(email, code);
     }
 }
