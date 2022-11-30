@@ -27,7 +27,7 @@ class KakaoOAuthService(
             user = User(
                 email = kakaoUserInfoRequest.email,
                 accountId = kakaoUserInfoRequest.nickname,
-                profile = kakaoUserInfoRequest.profile_image
+                profile = kakaoUserInfoRequest.profileImage
             )
             userRepository.save(user)
         }
