@@ -67,7 +67,5 @@ aws:
     region: ${AWS_REGIONS}
 
 auth:
-  google:
-    client-id: ${GOOGLE_CLIENT_ID}
-  kakao:
-    client-id: ${KAKAO_REST_API}
+  google-client-id: ${GOOGLE_CLIENT_ID}
+  kakao-rest-id: ${KAKAO_REST_API}
