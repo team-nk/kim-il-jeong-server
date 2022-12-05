@@ -1,6 +1,7 @@
 package team.nk.kimiljeongserver.domain.user.presentation
 
 import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import team.nk.kimiljeongserver.domain.auth.presentation.dto.response.TokenResponse
 import team.nk.kimiljeongserver.domain.user.service.oauth.GoogleOAuthService
@@ -21,7 +22,7 @@ class OAuthController(
 
     @ResponseStatus(HttpStatus.CREATED)
     @GetMapping("/google/token")
-    fun googleInfo(@RequestParam idToken: String): TokenResponse {
+    fun googleInfo(@RequestParam idToken: String): ResponseEntity<TokenResponse> {
         return googleOAuthService.getInfo(idToken)
     }
 
@@ -32,7 +33,7 @@ class OAuthController(
 
     @ResponseStatus(HttpStatus.CREATED)
     @GetMapping("/kakao/user")
-    fun kakaoCode(@RequestBody @Valid kakaoUserInfoRequest: KakaoUserInfoRequest): TokenResponse {
+    fun kakaoCode(@RequestBody @Valid kakaoUserInfoRequest: KakaoUserInfoRequest): ResponseEntity<TokenResponse> {
         return kakaoOAuthService.saveUser(kakaoUserInfoRequest)
     }
 }
