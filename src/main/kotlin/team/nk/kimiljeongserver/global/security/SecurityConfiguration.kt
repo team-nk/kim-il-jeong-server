@@ -32,6 +32,12 @@ class SecurityConfiguration(
             .antMatchers("/swagger-ui/**").permitAll()
             .antMatchers("/v3/api-docs/**").permitAll()
 
+            .antMatchers(HttpMethod.GET, "/oauth/google").permitAll()
+            .antMatchers(HttpMethod.GET, "/oauth/google/code").permitAll()
+            .antMatchers(HttpMethod.GET, "/oauth/kakao").permitAll()
+            .antMatchers(HttpMethod.GET, "/oauth/kakao/code").permitAll()
+            .antMatchers("/code").permitAll()
+
             .antMatchers(HttpMethod.POST, "/user").permitAll()
             .antMatchers(HttpMethod.GET, "/user").authenticated()
             .antMatchers(HttpMethod.POST, "/user/login").permitAll()

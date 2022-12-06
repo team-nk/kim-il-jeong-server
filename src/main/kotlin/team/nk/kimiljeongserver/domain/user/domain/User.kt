@@ -19,7 +19,7 @@ class User(
     @Length(min = 5, max = 20)
     val accountId: String,
 
-    password: String,
+    password: String?,
 
     birthday: LocalDate = LocalDate.now(),
 
