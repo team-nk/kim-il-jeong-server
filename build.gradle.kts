@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
 	id("org.springframework.boot") version "2.7.3"
 	id("io.spring.dependency-management") version "1.0.13.RELEASE"
@@ -9,14 +7,60 @@ plugins {
 	kotlin("kapt") version "1.6.10"
 }
 
-configurations {
-	compileOnly {
-		extendsFrom(configurations.annotationProcessor.get())
-	}
-}
+dependencies {
+	//jpa
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
-repositories {
-	mavenCentral()
+	//jwt
+	implementation("io.jsonwebtoken:jjwt:0.9.1")
+
+	//redis
+	implementation("org.springframework.boot:spring-boot-starter-data-redis")
+
+	//security
+	implementation("org.springframework.boot:spring-boot-starter-security")
+
+	//validation
+	implementation("org.springframework.boot:spring-boot-starter-validation")
+
+	//web
+	implementation("org.springframework.boot:spring-boot-starter-web")
+
+	//kotlin
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+	//lombok
+	implementation("org.projectlombok:lombok:1.18.24")
+
+	//mail
+	implementation ("org.springframework.boot:spring-boot-starter-mail")
+
+	//ses
+	implementation("com.amazonaws:aws-java-sdk-ses:1.12.315")
+
+	//mysql
+	runtimeOnly("mysql:mysql-connector-java")
+
+	//java servlet
+	implementation("javax.servlet:javax.servlet-api:4.0.1")
+
+	//aws
+	implementation ("org.springframework.cloud:spring-cloud-starter-aws")
+
+	//querydsl
+	implementation("com.querydsl:querydsl-jpa:5.0.0")
+	kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
+
+	//openfeign
+	implementation ("org.springdoc:springdoc-openapi-ui:1.6.11")
+	implementation("org.springframework.cloud:spring-cloud-starter-openfeign:3.1.4")
+
+	//test
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.security:spring-security-test")
+	implementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
 }
 
 allprojects {
@@ -47,63 +91,20 @@ allprojects {
 	}
 }
 
+configurations {
+	compileOnly {
+		extendsFrom(configurations.annotationProcessor.get())
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
 dependencyManagement {
 	imports {
 		mavenBom("org.springframework.cloud:spring-cloud-aws-dependencies:2.2.6.RELEASE")
 	}
-}
-
-dependencies {
-	//jpa
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-
-	//jwt
-	implementation("io.jsonwebtoken:jjwt:0.9.1")
-
-	//redis
-	implementation("org.springframework.boot:spring-boot-starter-data-redis")
-
-	//security
-	implementation("org.springframework.boot:spring-boot-starter-security")
-
-	//validation
-	implementation("org.springframework.boot:spring-boot-starter-validation")
-
-	//web
-	implementation("org.springframework.boot:spring-boot-starter-web")
-
-	//kotlin
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-
-	//mail
-	implementation ("org.springframework.boot:spring-boot-starter-mail")
-
-	//ses
-	implementation("com.amazonaws:aws-java-sdk-ses:1.12.315")
-
-	//mysql
-	runtimeOnly("mysql:mysql-connector-java")
-
-	//java servlet
-	implementation("javax.servlet:javax.servlet-api:4.0.1")
-
-	//aws
-	implementation ("org.springframework.cloud:spring-cloud-starter-aws")
-
-	//querydsl
-	implementation("com.querydsl:querydsl-jpa:5.0.0")
-	kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
-
-	//openfeign
-	implementation ("org.springdoc:springdoc-openapi-ui:1.6.11")
-	implementation("org.springframework.cloud:spring-cloud-starter-openfeign:3.1.4")
-
-	//test
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.springframework.security:spring-security-test")
-	implementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
 }
 
 kotlin.sourceSets.main {
