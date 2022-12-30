@@ -19,7 +19,9 @@ class QueryPostService(
         val postList = postRepository.queryPost().map {
             val commentCount = commentRepository.countAllByPost(it.post)
             PostElement(
+                id = it.id,
                 title = it.title,
+                content = it.content,
                 scheduleContent = it.scheduleContent,
                 address = it.address,
                 color = it.color,

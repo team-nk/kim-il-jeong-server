@@ -2,7 +2,6 @@ package team.nk.kimiljeongserver.domain.post.domain.repository
 
 import com.querydsl.core.types.dsl.BooleanExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
-import team.nk.kimiljeongserver.domain.post.domain.QPost
 import team.nk.kimiljeongserver.domain.post.domain.QPost.post
 import team.nk.kimiljeongserver.domain.post.domain.repository.vo.PostVO
 import team.nk.kimiljeongserver.domain.post.domain.repository.vo.QPostVO
@@ -16,7 +15,9 @@ class CustomPostRepositoryImpl(
     override fun queryPost(): List<PostVO> {
         return jpaQueryFactory.select(
             QPostVO(
+                post.id,
                 post.title,
+                post.content,
                 schedule.content,
                 schedule.address,
                 schedule.color,
