@@ -11,6 +11,7 @@ import team.nk.kimiljeongserver.global.exception.SignatureTokenException
 import team.nk.kimiljeongserver.global.exception.UnexpectedTokenException
 import team.nk.kimiljeongserver.global.security.jwt.properties.JwtProperties
 import team.nk.kimiljeongserver.global.security.principle.AuthDetailsService
+import java.util.*
 import javax.servlet.http.HttpServletRequest
 
 @Component
@@ -40,6 +41,11 @@ class JwtTokenParser(
         return if (token != null && token.startsWith(JWT_PREFIX)) {
             return token.replace(JWT_PREFIX, "")
         } else null
+    }
+
+    fun validateToken(token: String): Boolean {
+        return parseTokenBody(token)
+            .expiration.after(Date());
     }
 
     private fun getTokenSubject(subject: String): String {
