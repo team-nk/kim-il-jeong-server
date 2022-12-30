@@ -5,4 +5,6 @@ import org.springframework.stereotype.Repository
 import team.nk.kimiljeongserver.domain.auth.domain.RefreshToken
 
 @Repository
-interface RefreshTokenRepository : CrudRepository<RefreshToken, String>
+interface RefreshTokenRepository : CrudRepository<RefreshToken, String> {
+    fun findByToken(token: String): RefreshToken?
+}
