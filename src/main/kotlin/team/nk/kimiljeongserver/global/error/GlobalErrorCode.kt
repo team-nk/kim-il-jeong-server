@@ -20,6 +20,8 @@ enum class GlobalErrorCode(
 
     CODE_NOT_FOUND(HttpStatus.NOT_FOUND, "Code Not Found"),
 
+    REFRESH_TOKEN_NOT_FOUND(HttpStatus.NOT_FOUND, "Refresh Token Not Found"),
+
     FEIGN_BAD_REQUEST(HttpStatus.BAD_REQUEST, "Feign Bad Request"),
     FEIGN_EXPIRED_TOKEN(HttpStatus.REQUEST_TIMEOUT, "Feign Expired Token"),
     FEIGN_FORBIDDEN(HttpStatus.FORBIDDEN, "Feign Forbidden"),
