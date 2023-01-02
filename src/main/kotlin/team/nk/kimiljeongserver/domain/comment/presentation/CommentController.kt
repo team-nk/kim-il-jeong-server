@@ -26,8 +26,8 @@ class CommentController(
     }
 
     @Operation(summary = "댓글 전체 조회")
-    @GetMapping
-    fun queryComment(): CommentListResponse {
-        return queryCommentService.execute()
+    @GetMapping("/{post-id}")
+    fun queryComment(@PathVariable("post-id") postId: Int): CommentListResponse {
+        return queryCommentService.execute(postId)
     }
 }

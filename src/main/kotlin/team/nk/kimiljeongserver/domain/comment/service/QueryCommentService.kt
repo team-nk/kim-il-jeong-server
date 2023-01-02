@@ -12,8 +12,9 @@ class QueryCommentService(
 ) {
 
     @Transactional(readOnly = true)
-    fun execute(): CommentListResponse {
-        val commentList = commentRepository.queryComment().map {
+    fun execute(postId: Int): CommentListResponse {
+        val commentList = commentRepository.queryComment(postId)
+            .map {
             CommentElement(
                 content = it.content,
                 accountId = it.accountId,
