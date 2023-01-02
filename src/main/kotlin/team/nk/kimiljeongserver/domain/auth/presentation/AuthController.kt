@@ -14,10 +14,9 @@ class AuthController(
     private val reissueService: ReissueService
 ) {
 
-    @Operation(summary = "댓글 작성")
-    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "토큰 재발급")
     @PutMapping
-    fun createComment(@RequestHeader("Refresh-Token") refreshToken: String): TokenResponse {
+    fun tokenReissue(@RequestHeader("Refresh-Token") refreshToken: String): TokenResponse {
         return reissueService.execute(refreshToken)
     }
 }
