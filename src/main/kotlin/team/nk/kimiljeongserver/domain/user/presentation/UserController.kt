@@ -5,10 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import team.nk.kimiljeongserver.domain.auth.presentation.dto.response.TokenResponse
-import team.nk.kimiljeongserver.domain.user.presentation.dto.request.LoginUserRequest
-import team.nk.kimiljeongserver.domain.user.presentation.dto.request.ModifyBirthdayRequest
-import team.nk.kimiljeongserver.domain.user.presentation.dto.request.ModifyPasswordRequest
-import team.nk.kimiljeongserver.domain.user.presentation.dto.request.SaveUserRequest
+import team.nk.kimiljeongserver.domain.user.presentation.dto.request.*
 import team.nk.kimiljeongserver.domain.user.presentation.dto.response.QueryBooleanResponse
 import team.nk.kimiljeongserver.domain.user.presentation.dto.response.QueryMyInfoResponse
 import team.nk.kimiljeongserver.domain.user.service.*
@@ -24,7 +21,8 @@ class UserController(
     private val modifyPasswordService: ModifyPasswordService,
     private val queryMyInfoService: QueryMyInfoService,
     private val userExistsService: AlreadyUserExistsService,
-    private val userCheckCodeService: UserCheckCodeService
+    private val userCheckCodeService: UserCheckCodeService,
+    private val modifyUserInfoService: ModifyUserInfoService
 ) {
 
     @Operation(summary = "회원가입")
@@ -70,5 +68,12 @@ class UserController(
     @GetMapping("/code")
     fun checkCode(@RequestParam("email") email: String, @RequestParam("code") code: String): QueryBooleanResponse {
         return userCheckCodeService.execute(email, code);
+    }
+
+    @Operation(summary = "자신의 정보 수정")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping
+    fun modifyUserInfo(@Valid @RequestBody request: ModifyUserInfoRequest) {
+        modifyUserInfoService.execute(request);
     }
 }

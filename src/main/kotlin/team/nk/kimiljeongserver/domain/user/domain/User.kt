@@ -12,12 +12,9 @@ import javax.validation.constraints.NotNull
 @Table(name = "tbl_user")
 class User(
 
-    @field:NotNull
-    val email: String,
+    email: String,
 
-    @field:NotNull
-    @Length(min = 5, max = 20)
-    val accountId: String,
+    accountId: String,
 
     password: String?,
 
@@ -26,6 +23,16 @@ class User(
     profile: String = DefaultImage.PROFILE_IMAGE
 
 ) : BaseEntity() {
+
+
+    @field:NotNull
+    var email = email
+        protected set
+
+    @field:NotNull
+    @Length(min = 5, max = 20)
+    var accountId = accountId
+        protected set
 
     @field:NotNull
     @Length(max = 60)
@@ -46,5 +53,11 @@ class User(
 
     fun modifyPassword(password: String) {
         this.password = password
+    }
+
+    fun modifyUserInfo(email: String, accountId: String, profile: String) {
+        this.email = email
+        this.accountId = accountId
+        this.profile = profile
     }
 }
