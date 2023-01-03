@@ -12,9 +12,9 @@ class RefreshToken(
     val email: String,
 
     @Indexed
-    @NotBlank
+    @field: NotBlank
     val token: String,
 
-    @TimeToLive
+    @field:TimeToLive
     val timeToLive: Long
 )
