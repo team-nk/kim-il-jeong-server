@@ -38,6 +38,8 @@ class SecurityConfiguration(
             .antMatchers(HttpMethod.GET, "/oauth/kakao/code").permitAll()
             .antMatchers("/code").permitAll()
 
+            .antMatchers(HttpMethod.PUT, "/auth").authenticated()
+
             .antMatchers(HttpMethod.POST, "/user").permitAll()
             .antMatchers(HttpMethod.GET, "/user").authenticated()
             .antMatchers(HttpMethod.POST, "/user/login").permitAll()
