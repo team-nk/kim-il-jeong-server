@@ -8,12 +8,14 @@ import team.nk.kimiljeongserver.global.exception.RefreshTokenNotFoundException
 import team.nk.kimiljeongserver.global.exception.UnexpectedTokenException
 import team.nk.kimiljeongserver.global.security.jwt.JwtTokenParser
 import team.nk.kimiljeongserver.global.security.jwt.JwtTokenProvider
+import team.nk.kimiljeongserver.global.security.jwt.properties.JwtProperties
 
 @Service
 class ReissueService(
     private val jwtTokenProvider: JwtTokenProvider,
     private val jwtTokenParser: JwtTokenParser,
-    private val refreshTokenRepository: RefreshTokenRepository
+    private val refreshTokenRepository: RefreshTokenRepository,
+    private val jwtProperties: JwtProperties
 ) {
 
     @Transactional
@@ -23,7 +25,7 @@ class ReissueService(
         val usedToken =
             refreshTokenRepository.findByToken(refreshToken) ?: throw RefreshTokenNotFoundException.EXCEPTION
 
-        refreshTokenRepository.delete(usedToken)
+        usedToken.timeToLive = jwtProperties.refreshExp
 
         val accessToken = jwtTokenProvider.generateAccessToken(usedToken.email)
         val newRefreshToken = jwtTokenProvider.generateRefreshToken(usedToken.email)
