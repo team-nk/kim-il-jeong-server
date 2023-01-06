@@ -20,8 +20,7 @@ class User(
 
     birthday: LocalDate = LocalDate.now(),
 
-    profile: String = DefaultImage.PROFILE_IMAGE
-
+    profile: String? = null
 ) : BaseEntity() {
 
 
