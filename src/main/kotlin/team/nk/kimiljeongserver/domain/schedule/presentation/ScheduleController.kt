@@ -6,7 +6,6 @@ import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.format.annotation.DateTimeFormat.ISO
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
-import team.nk.kimiljeongserver.domain.schedule.presentation.dto.request.ScheduleByMapRequest
 import team.nk.kimiljeongserver.domain.schedule.presentation.dto.request.ScheduleRequest
 import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.ChooseScheduleListResponse
 import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.ScheduleByMapListResponse
@@ -69,8 +68,12 @@ class ScheduleController(
 
     @Operation(summary = "지도로 일정 리스트 보기")
     @GetMapping("/map")
-    fun queryScheduleByMap(@Valid @RequestBody request: ScheduleByMapRequest): ScheduleByMapListResponse {
-        return queryScheduleByMapService.execute(request)
+    fun queryScheduleByMap(
+        //@Valid @RequestBody request: ScheduleByMapRequest
+    ): ScheduleByMapListResponse {
+        return queryScheduleByMapService.execute(
+            //request
+        )
     }
 
 }

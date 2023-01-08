@@ -15,7 +15,9 @@ class QueryScheduleByMapService(
 ) {
 
     @Transactional(readOnly = true)
-    fun execute(request: ScheduleByMapRequest): ScheduleByMapListResponse {
+    fun execute(
+        //request: ScheduleByMapRequest
+        ): ScheduleByMapListResponse {
         val user = userFacade.getCurrentUser()
         //val scheduleList = scheduleRepository.findAllSchedule(request.latitude, request.longitude, request.distance)
         val scheduleList = scheduleRepository.findAll()
