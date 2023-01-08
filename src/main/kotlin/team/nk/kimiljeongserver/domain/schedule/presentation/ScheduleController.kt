@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import team.nk.kimiljeongserver.domain.schedule.presentation.dto.request.ScheduleRequest
 import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.ChooseScheduleListResponse
+import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.LocationScheduleListResponse
 import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.ScheduleByMapListResponse
 import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.ScheduleListResponse
 import team.nk.kimiljeongserver.domain.schedule.service.*
@@ -24,7 +25,8 @@ class ScheduleController(
     private val queryScheduleService: QueryScheduleService,
     private val queryMyScheduleService: QueryMyScheduleService,
     private val chooseScheduleService: QueryChooseScheduleService,
-    private val queryScheduleByMapService: QueryScheduleByMapService
+    private val queryScheduleByMapService: QueryScheduleByMapService,
+    private val queryScheduleLocationService: QueryLocationScheduleService
 ) {
 
     @Operation(summary = "일정 생성")
@@ -76,4 +78,9 @@ class ScheduleController(
         )
     }
 
+    @Operation(summary = "모든 일정 위도, 경도 보기")
+    @GetMapping("/location")
+    fun queryLocationSchedule(): LocationScheduleListResponse {
+        return queryScheduleLocationService.execute()
+    }
 }

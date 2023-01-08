@@ -53,6 +53,7 @@ class SecurityConfiguration(
             .antMatchers(HttpMethod.DELETE, "/schedule/{schedule-id}").authenticated()
             .antMatchers(HttpMethod.GET, "/schedule").authenticated()
             .antMatchers(HttpMethod.GET, "/schedule/map").authenticated()
+            .antMatchers(HttpMethod.GET, "/schedule/location").authenticated()
             .antMatchers(HttpMethod.GET, "/schedule/list").authenticated()
             .antMatchers(HttpMethod.GET, "/schedule/choose").authenticated()
 
