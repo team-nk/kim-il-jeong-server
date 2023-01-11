@@ -22,8 +22,6 @@ class CreateScheduleService(
             Schedule(
                 content = scheduleRequest.content,
                 address = scheduleRequest.address,
-                latitude = scheduleRequest.latitude,
-                longitude = scheduleRequest.longitude,
                 color = scheduleRequest.color,
                 isAlways = scheduleRequest.isAlways,
                 startTime = scheduleRequest.startTime,

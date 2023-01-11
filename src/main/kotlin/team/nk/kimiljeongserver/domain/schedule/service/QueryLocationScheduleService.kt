@@ -20,7 +20,8 @@ class QueryLocationScheduleService(
             LocationScheduleElement(
                 scheduleId = it.id,
                 latitude = it.latitude,
-                longitude = it.longitude
+                longitude = it.longitude,
+                address = it.address
             )
         }
 

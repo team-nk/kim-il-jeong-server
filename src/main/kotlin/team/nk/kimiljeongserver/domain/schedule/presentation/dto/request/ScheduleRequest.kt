@@ -13,10 +13,6 @@ data class ScheduleRequest(
 
     val address: String,
 
-    val latitude: Double,
-
-    val longitude: Double,
-
     val color: Color,
 
     val isAlways: Boolean,

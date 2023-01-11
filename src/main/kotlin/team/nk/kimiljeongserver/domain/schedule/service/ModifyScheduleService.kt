@@ -17,8 +17,7 @@ class ModifyScheduleService(
 
         schedule.modifySchedule(
             content = scheduleRequest.content,
-            latitude = scheduleRequest.latitude,
-            longitude = scheduleRequest.longitude,
+            address = scheduleRequest.address,
             color = scheduleRequest.color,
             isAlways = scheduleRequest.isAlways,
             startTime = scheduleRequest.startTime,

@@ -16,9 +16,9 @@ class Schedule(
 
     address: String,
 
-    latitude: Double,
+    latitude: Double? = null,
 
-    longitude: Double,
+    longitude: Double? = null,
 
     color: Color,
 
@@ -70,16 +70,14 @@ class Schedule(
 
     fun modifySchedule(
         content: String,
-        latitude: Double,
-        longitude: Double,
+        address: String,
         color: Color,
         isAlways: Boolean,
         startTime: LocalDateTime,
         endTime: LocalDateTime
     ) {
         this.content = content
-        this.latitude = latitude
-        this.longitude = longitude
+        this.address = address
         this.color = color
         this.isAlways = isAlways
         this.startTime = startTime
