@@ -7,13 +7,15 @@ import team.nk.kimiljeongserver.domain.auth.presentation.dto.response.TokenRespo
 import team.nk.kimiljeongserver.domain.user.exception.PasswordMissMatchedException
 import team.nk.kimiljeongserver.domain.user.facade.UserFacade
 import team.nk.kimiljeongserver.domain.user.presentation.dto.request.LoginUserRequest
+import team.nk.kimiljeongserver.global.security.jwt.JwtTokenParser
 import team.nk.kimiljeongserver.global.security.jwt.JwtTokenProvider
 
 @Service
 class LoginUserService(
     private val userFacade: UserFacade,
     private val passwordEncoder: PasswordEncoder,
-    private val jwtTokenProvider: JwtTokenProvider
+    private val jwtTokenProvider: JwtTokenProvider,
+    private val jwtTokenParser: JwtTokenParser
 ) {
 
     @Transactional
@@ -24,8 +26,13 @@ class LoginUserService(
             throw PasswordMissMatchedException.EXCEPTION
         }
 
-        val token =  jwtTokenProvider.getToken(loginUserRequest.email)
+        val token = jwtTokenProvider.getToken(loginUserRequest.email)
+        val expiredAt = jwtTokenParser.getExpiredTime()
 
-        return TokenResponse(token.accessToken, token.refreshToken)
+        return TokenResponse(
+            accessToken = token.accessToken,
+            refreshToken = token.refreshToken,
+            expiredAt = expiredAt
+        )
     }
 }

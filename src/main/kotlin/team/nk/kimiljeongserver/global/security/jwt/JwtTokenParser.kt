@@ -11,6 +11,7 @@ import team.nk.kimiljeongserver.global.exception.SignatureTokenException
 import team.nk.kimiljeongserver.global.exception.UnexpectedTokenException
 import team.nk.kimiljeongserver.global.security.jwt.properties.JwtProperties
 import team.nk.kimiljeongserver.global.security.principle.AuthDetailsService
+import java.time.LocalDateTime
 import java.util.*
 import javax.servlet.http.HttpServletRequest
 
@@ -46,6 +47,10 @@ class JwtTokenParser(
     fun validateToken(token: String): Boolean {
         return parseTokenBody(token)
             .expiration.after(Date());
+    }
+
+    fun getExpiredTime(): LocalDateTime {
+        return LocalDateTime.now().plusSeconds(jwtProperties.accessExp)
     }
 
     private fun getTokenSubject(subject: String): String {

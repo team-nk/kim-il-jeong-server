@@ -29,9 +29,12 @@ class ReissueService(
 
         val accessToken = jwtTokenProvider.generateAccessToken(usedToken.email)
         val newRefreshToken = jwtTokenProvider.generateRefreshToken(usedToken.email)
+        val expiredAt = jwtTokenParser.getExpiredTime()
 
         return TokenResponse(
-            accessToken = accessToken, refreshToken = newRefreshToken
+            accessToken = accessToken,
+            refreshToken = newRefreshToken,
+            expiredAt = expiredAt
         )
     }
 }

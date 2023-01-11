@@ -12,6 +12,7 @@ import java.util.*
 @Component
 class JwtTokenProvider(
     private val jwtProperties: JwtProperties,
+    private val jwtTokenParser: JwtTokenParser,
     private val refreshTokenRepository: RefreshTokenRepository
 ) {
     companion object {
@@ -22,8 +23,9 @@ class JwtTokenProvider(
     fun getToken(email: String): TokenResponse {
         val accessToken: String = generateToken(email, jwtProperties.accessExp, ACCESS_KEY)
         val refreshToken: String = generateRefreshToken(email)
+        val expiredAt = jwtTokenParser.getExpiredTime()
 
-        return TokenResponse(accessToken = accessToken, refreshToken = refreshToken)
+        return TokenResponse(accessToken = accessToken, refreshToken = refreshToken, expiredAt = expiredAt)
     }
 
     fun generateAccessToken(email: String): String {
