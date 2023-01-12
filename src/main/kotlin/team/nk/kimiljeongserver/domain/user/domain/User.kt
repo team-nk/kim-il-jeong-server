@@ -42,7 +42,6 @@ class User(
     var birthday = birthday
         protected set
 
-    @field:NotNull
     var profile = profile
         protected set
 
