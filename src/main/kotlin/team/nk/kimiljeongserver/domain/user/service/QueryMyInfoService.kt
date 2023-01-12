@@ -13,9 +13,10 @@ class QueryMyInfoService(
     @Transactional
     fun execute(): QueryMyInfoResponse {
         val user = userFacade.getCurrentUser()
+        val profile = if (user.profile == "null") null else user.profile
 
         return QueryMyInfoResponse(
-            profile = user.profile,
+            profile = profile,
             accountId = user.accountId,
             email = user.email
         )

@@ -20,7 +20,7 @@ class User(
 
     birthday: LocalDate = LocalDate.now(),
 
-    profile: String? = null
+    profile: String = "null"
 ) : BaseEntity() {
 
 
