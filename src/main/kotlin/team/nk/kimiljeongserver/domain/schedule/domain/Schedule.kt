@@ -16,9 +16,9 @@ class Schedule(
 
     address: String,
 
-    latitude: Double? = null,
+    latitude: Double? = 0.0,
 
-    longitude: Double? = null,
+    longitude: Double? = 0.0,
 
     color: Color,
 
