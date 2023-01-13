@@ -6,23 +6,28 @@ import team.nk.kimiljeongserver.domain.schedule.domain.Schedule
 import team.nk.kimiljeongserver.domain.schedule.domain.repository.ScheduleRepository
 import team.nk.kimiljeongserver.domain.schedule.presentation.dto.request.ScheduleRequest
 import team.nk.kimiljeongserver.domain.user.facade.UserFacade
+import team.nk.kimiljeongserver.domain.user.service.oauth.KakaoOAuthService
 
 @Service
 class CreateScheduleService(
     private val userFacade: UserFacade,
-    private val scheduleRepository: ScheduleRepository
+    private val scheduleRepository: ScheduleRepository,
+    private val kakaoOauthService: KakaoOAuthService
 ) {
 
     @Transactional
-    fun execute(scheduleRequest: ScheduleRequest) {
+    fun execute(scheduleRequest: ScheduleRequest, authorization: String) {
 
         val user = userFacade.getCurrentUser()
+        val response = kakaoOauthService.getLocation(scheduleRequest.address, authorization)
 
         scheduleRepository.save(
             Schedule(
                 content = scheduleRequest.content,
                 address = scheduleRequest.address,
                 color = scheduleRequest.color,
+                latitude = response.x,
+                longitude = response.y,
                 isAlways = scheduleRequest.isAlways,
                 startTime = scheduleRequest.startTime,
                 endTime = scheduleRequest.endTime,

@@ -32,8 +32,8 @@ class ScheduleController(
     @Operation(summary = "일정 생성")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    fun createSchedule(@Valid @RequestBody request: ScheduleRequest) {
-        createScheduleService.execute(request)
+    fun createSchedule(@Valid @RequestBody request: ScheduleRequest, @RequestHeader("Authorization")authorization:String) {
+        createScheduleService.execute(request, authorization)
     }
 
     @Operation(summary = "일정 수정")
