@@ -9,5 +9,6 @@ data class ScheduleByMapElement(
     val address: String,
     val color: Color,
     val startTime: LocalDateTime,
-    val endTime: LocalDateTime
+    val endTime: LocalDateTime,
+    val isAlways: Boolean
 )

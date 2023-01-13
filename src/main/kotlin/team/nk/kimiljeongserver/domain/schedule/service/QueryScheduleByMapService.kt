@@ -32,7 +32,8 @@ class QueryScheduleByMapService(
                     address = it.address,
                     color = it.color,
                     startTime = it.startTime,
-                    endTime = it.endTime
+                    endTime = it.endTime,
+                    isAlways = it.isAlways
                 )
             }
 
