@@ -7,6 +7,7 @@ import team.nk.kimiljeongserver.domain.auth.presentation.dto.response.TokenRespo
 import team.nk.kimiljeongserver.domain.user.service.oauth.GoogleOAuthService
 import team.nk.kimiljeongserver.domain.user.service.oauth.KakaoOAuthService
 import team.nk.kimiljeongserver.infrastructure.feign.dto.request.KakaoUserInfoRequest
+import team.nk.kimiljeongserver.infrastructure.feign.dto.response.KakaoRoadAddressResponse
 import javax.validation.Valid
 
 @RequestMapping("/oauth")
@@ -35,5 +36,13 @@ class OAuthController(
     @GetMapping("/kakao/user")
     fun kakaoCode(@RequestBody @Valid kakaoUserInfoRequest: KakaoUserInfoRequest): ResponseEntity<TokenResponse> {
         return kakaoOAuthService.saveUser(kakaoUserInfoRequest)
+    }
+
+    @GetMapping("/kakao/location")
+    fun kakaoLocation(
+        @RequestParam("query") query: String,
+        @RequestHeader("Authorization") authorization: String
+    ): KakaoRoadAddressResponse {
+        return kakaoOAuthService.getLocation(query, authorization)
     }
 }

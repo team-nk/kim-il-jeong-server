@@ -7,14 +7,17 @@ import team.nk.kimiljeongserver.domain.auth.presentation.dto.response.TokenRespo
 import team.nk.kimiljeongserver.domain.user.domain.User
 import team.nk.kimiljeongserver.domain.user.domain.repository.UserRepository
 import team.nk.kimiljeongserver.global.security.jwt.JwtTokenProvider
+import team.nk.kimiljeongserver.infrastructure.feign.client.KakaoLocationClient
 import team.nk.kimiljeongserver.infrastructure.feign.dto.request.KakaoUserInfoRequest
+import team.nk.kimiljeongserver.infrastructure.feign.dto.response.KakaoRoadAddressResponse
 import team.nk.kimiljeongserver.infrastructure.feign.properties.OAuthFeignProperties
 
 @Service
 class KakaoOAuthService(
     private val oAuthFeignProperties: OAuthFeignProperties,
     private val userRepository: UserRepository,
-    private val jwtTokenProvider: JwtTokenProvider
+    private val jwtTokenProvider: JwtTokenProvider,
+    private val kakaoLocationClient: KakaoLocationClient
 ) {
 
     fun getClientId(): String {
@@ -37,5 +40,19 @@ class KakaoOAuthService(
         }
 
         return ResponseEntity<TokenResponse>(jwtTokenProvider.getToken(user.email), status)
+    }
+
+    fun getLocation(query: String, authorization: String): KakaoRoadAddressResponse {
+        val response = kakaoLocationClient.getLocation(
+            query = query,
+            authorization = authorization
+        ).documents[0].roadAddress
+
+
+        return KakaoRoadAddressResponse(
+            x = response.x,
+            y = response.y,
+            buildingName = response.buildingName
+        )
     }
 }

@@ -36,6 +36,7 @@ class SecurityConfiguration(
             .antMatchers(HttpMethod.GET, "/oauth/google/code").permitAll()
             .antMatchers(HttpMethod.GET, "/oauth/kakao").permitAll()
             .antMatchers(HttpMethod.GET, "/oauth/kakao/code").permitAll()
+            .antMatchers(HttpMethod.GET, "/oauth/kakao/location/**").permitAll()
             .antMatchers("/code").permitAll()
 
             .antMatchers(HttpMethod.PUT, "/auth").authenticated()
