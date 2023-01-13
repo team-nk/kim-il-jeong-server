@@ -23,8 +23,8 @@ class CustomPostRepositoryImpl(
                 schedule.color,
                 user.accountId,
                 post.createdAt,
-                isMine(),
-                post
+                post,
+                user
             ),
         )
             .from(post)
@@ -32,9 +32,5 @@ class CustomPostRepositoryImpl(
             .leftJoin(post.user, user)
             .orderBy(post.createdAt.desc())
             .fetch().toList()
-    }
-
-    private fun isMine(): BooleanExpression {
-        return post.user.eq(user)
     }
 }
