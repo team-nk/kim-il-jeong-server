@@ -27,6 +27,7 @@ class QueryScheduleService(
                 scheduleId = it.id,
                 content = it.content,
                 color = it.color,
+                address = it.address,
                 startTime = it.startTime,
                 endTime = it.endTime,
                 isAlways = it.isAlways
