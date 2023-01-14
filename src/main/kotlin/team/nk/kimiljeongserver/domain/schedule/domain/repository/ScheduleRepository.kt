@@ -17,11 +17,11 @@ interface ScheduleRepository : CrudRepository<Schedule, Int> {
 
     fun findAllByUserOrderByStartTimeDesc(user: User): List<Schedule>?
 
-    @Query(
+/*    @Query(
         value = "SELECT *, (6371 * acos(cos(radians(:x)) * cos(radians(s.latitude)) * cos(radians(s.longitude) - radians(:y)) + sin(radians(:x)) * sin(radians(s.latitude)))) AS distance FROM tbl_schedule AS s HAVING distance <= :d ORDER BY distance;",
         nativeQuery = true
     )
     fun findAllSchedule(
         @Param(value = "x") x: BigDecimal, @Param(value = "y") y: BigDecimal, @Param(value = "d") d: BigDecimal
-    ): List<Schedule>
+    ): List<Schedule>*/
 }
