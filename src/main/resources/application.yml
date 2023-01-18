@@ -69,3 +69,4 @@ aws:
 auth:
   google-client-id: ${GOOGLE_CLIENT_ID}
   kakao-rest-id: ${KAKAO_REST_API}
+  kakaoak: ${KAKAO_AK}

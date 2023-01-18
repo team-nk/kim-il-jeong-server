@@ -1,5 +1,6 @@
 package team.nk.kimiljeongserver.domain.schedule.service
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import team.nk.kimiljeongserver.domain.schedule.domain.Schedule
@@ -12,14 +13,14 @@ import team.nk.kimiljeongserver.domain.user.service.oauth.KakaoOAuthService
 class CreateScheduleService(
     private val userFacade: UserFacade,
     private val scheduleRepository: ScheduleRepository,
-    private val kakaoOauthService: KakaoOAuthService
-) {
+    private val kakaoOauthService: KakaoOAuthService,
+    ) {
 
     @Transactional
-    fun execute(scheduleRequest: ScheduleRequest, authorization: String) {
+    fun execute(scheduleRequest: ScheduleRequest) {
 
         val user = userFacade.getCurrentUser()
-        val response = kakaoOauthService.getLocation(scheduleRequest.address, authorization)
+        val response = kakaoOauthService.getLocation(scheduleRequest.address)
 
         scheduleRepository.save(
             Schedule(

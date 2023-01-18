@@ -1,5 +1,6 @@
 package team.nk.kimiljeongserver.domain.user.service.oauth
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
@@ -17,7 +18,9 @@ class KakaoOAuthService(
     private val oAuthFeignProperties: OAuthFeignProperties,
     private val userRepository: UserRepository,
     private val jwtTokenProvider: JwtTokenProvider,
-    private val kakaoLocationClient: KakaoLocationClient
+    private val kakaoLocationClient: KakaoLocationClient,
+    @Value("\${auth.kakaoak}")
+    val authorization: String
 ) {
 
     fun getClientId(): String {
@@ -42,7 +45,7 @@ class KakaoOAuthService(
         return ResponseEntity<TokenResponse>(jwtTokenProvider.getToken(user.email), status)
     }
 
-    fun getLocation(query: String, authorization: String): KakaoRoadAddressResponse {
+    fun getLocation(query: String): KakaoRoadAddressResponse {
         val response = kakaoLocationClient.getLocation(
             query = query,
             authorization = authorization

@@ -41,8 +41,7 @@ class OAuthController(
     @GetMapping("/kakao/location")
     fun kakaoLocation(
         @RequestParam("query") query: String,
-        @RequestHeader("Authorization") authorization: String
     ): KakaoRoadAddressResponse {
-        return kakaoOAuthService.getLocation(query, authorization)
+        return kakaoOAuthService.getLocation(query)
     }
 }
