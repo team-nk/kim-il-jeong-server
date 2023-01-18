@@ -16,6 +16,8 @@ class Schedule(
 
     address: String,
 
+    buildingName: String,
+
     latitude: String,
 
     longitude: String,
@@ -41,6 +43,10 @@ class Schedule(
 
     @field:NotNull
     var address = address
+        protected set
+
+    @field: NotNull
+    var buildingName = buildingName
         protected set
 
     @field: NotNull
@@ -71,6 +77,9 @@ class Schedule(
     fun modifySchedule(
         content: String,
         address: String,
+        buildingName: String,
+        latitude: String,
+        longitude: String,
         color: Color,
         isAlways: Boolean,
         startTime: LocalDateTime,
@@ -78,6 +87,9 @@ class Schedule(
     ) {
         this.content = content
         this.address = address
+        this.buildingName = buildingName
+        this.latitude = latitude
+        this.longitude = longitude
         this.color = color
         this.isAlways = isAlways
         this.startTime = startTime
