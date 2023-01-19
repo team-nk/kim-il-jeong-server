@@ -21,7 +21,8 @@ class QueryLocationScheduleService(
                 scheduleId = it.id,
                 latitude = it.latitude,
                 longitude = it.longitude,
-                buildingName = it.buildingName
+                buildingName = it.buildingName,
+                color = it.color
             )
         }
 
