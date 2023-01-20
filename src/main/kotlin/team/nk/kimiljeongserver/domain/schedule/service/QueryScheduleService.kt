@@ -8,6 +8,7 @@ import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.Schedu
 import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.ScheduleListResponse
 import team.nk.kimiljeongserver.domain.user.facade.UserFacade
 import java.time.LocalDateTime
+import java.time.chrono.ChronoLocalDateTime
 
 
 @Service
@@ -41,7 +42,7 @@ class QueryScheduleService(
         val startTime = schedule.startTime
         val tomorrow = date.plusDays(1)
 
-        return startTime.isAfter(date) && startTime.isBefore(tomorrow)
+        return startTime >= date && startTime.isBefore(tomorrow)
     }
 }
 
