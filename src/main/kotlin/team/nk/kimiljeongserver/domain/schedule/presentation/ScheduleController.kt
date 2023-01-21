@@ -7,10 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import team.nk.kimiljeongserver.domain.schedule.presentation.dto.request.ScheduleRequest
-import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.ChooseScheduleListResponse
-import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.LocationScheduleListResponse
-import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.ScheduleByMapListResponse
-import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.ScheduleListResponse
+import team.nk.kimiljeongserver.domain.schedule.presentation.dto.response.*
 import team.nk.kimiljeongserver.domain.schedule.service.*
 import java.time.LocalDateTime
 import javax.validation.Valid
@@ -26,7 +23,8 @@ class ScheduleController(
     private val queryMyScheduleService: QueryMyScheduleService,
     private val chooseScheduleService: QueryChooseScheduleService,
     private val queryScheduleByMapService: QueryScheduleByMapService,
-    private val queryScheduleLocationService: QueryLocationScheduleService
+    private val queryScheduleLocationService: QueryLocationScheduleService,
+    private val queryScheduleDetailsService: QueryScheduleDetailsService
 ) {
 
     @Operation(summary = "일정 생성")
@@ -54,6 +52,12 @@ class ScheduleController(
     @GetMapping
     fun querySchedule(@RequestParam(value = "date") @DateTimeFormat(iso = ISO.DATE_TIME) date: LocalDateTime): ScheduleListResponse {
         return queryScheduleService.execute(date)
+    }
+
+    @Operation(summary = "일정 자세히 보기")
+    @GetMapping("/{schedule-id}")
+    fun queryScheduleDetails(@PathVariable("schedule-id")scheduleId: Int): ScheduleDetailsResponse {
+        return queryScheduleDetailsService.execute(scheduleId)
     }
 
     @Operation(summary = "자신의 전체 일정 보기")

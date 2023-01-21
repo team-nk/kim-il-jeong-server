@@ -50,9 +50,11 @@ class SecurityConfiguration(
             .antMatchers(HttpMethod.GET, "/user/code/**").permitAll()
 
             .antMatchers(HttpMethod.POST, "/schedule").authenticated()
+
             .antMatchers(HttpMethod.PUT, "/schedule/{schedule-id}").authenticated()
             .antMatchers(HttpMethod.DELETE, "/schedule/{schedule-id}").authenticated()
             .antMatchers(HttpMethod.GET, "/schedule").authenticated()
+            .antMatchers(HttpMethod.GET, "/schedule/{schedule-id}").authenticated()
             .antMatchers(HttpMethod.GET, "/schedule/map").authenticated()
             .antMatchers(HttpMethod.GET, "/schedule/location").authenticated()
             .antMatchers(HttpMethod.GET, "/schedule/list").authenticated()
